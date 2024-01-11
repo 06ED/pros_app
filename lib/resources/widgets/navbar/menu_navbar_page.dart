@@ -4,7 +4,7 @@ import 'package:nylo_framework/nylo_framework.dart';
 import '../../../app/models/dish.dart';
 
 class MenuNavBarPage extends NyStatefulWidget {
-  static const path = '/home';
+  static const path = '/menu';
 
   MenuNavBarPage() : super(path, child: _MenuNavBarPageState());
 }
@@ -23,7 +23,7 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return afterLoad(child: () => Container(
       margin: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,6 +54,6 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
