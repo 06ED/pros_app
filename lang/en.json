@@ -1,5 +1,12 @@
 {
   "headers": {
-    "menu": "Menu"
+    "menu": "Menu",
+    "appeal": "Appeal"
+  },
+  "navbar": {
+    "menu": "MENU",
+    "appeal": "APPEAL",
+    "orders": "ORDERS",
+    "cart": "CART"
   }
 }
