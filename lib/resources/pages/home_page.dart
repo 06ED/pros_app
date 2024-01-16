@@ -1,10 +1,11 @@
+import 'package:bottom_blur_bar/bottom_blur_bar.dart';
 import 'package:flutter_app/config/design.dart';
-import 'package:flutter_app/resources/widgets/navbar/appeal_navbar_page.dart';
-import 'package:flutter_app/resources/widgets/navbar/menu_navbar_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:flutter/material.dart';
 import '../../app/models/user.dart';
 import '/app/controllers/home_controller.dart';
+import 'navbar/appeal_navbar_page.dart';
+import 'navbar/menu_navbar_page.dart';
 
 class HomePage extends NyStatefulWidget<HomeController> {
   static const path = '/home';
@@ -20,25 +21,25 @@ class _HomePageState extends NyState<HomePage> {
   @override
   Widget build(BuildContext context) {
     final navbarItems = [
-      BottomNavigationBarItem(
+      BlurNavbarItem(
         icon: _getIcon("navbar/menu.png"),
-        label: "navbar.menu".tr(),
+        title: "navbar.menu".tr(),
       ),
-      BottomNavigationBarItem(
+      BlurNavbarItem(
         icon: _getIcon("navbar/appeal.png"),
-        label: "navbar.appeal".tr(),
+        title: "navbar.appeal".tr(),
       ),
     ];
 
     if (Auth.user<User>()!.isVip!) {
       navbarItems.addAll([
-        BottomNavigationBarItem(
+        BlurNavbarItem(
           icon: _getIcon("navbar/orders.png"),
-          label: "navbar.orders".tr(),
+          title: "navbar.orders".tr(),
         ),
-        BottomNavigationBarItem(
+        BlurNavbarItem(
           icon: _getIcon("navbar/cart.png"),
-          label: "navbar.cart".tr(),
+          title: "navbar.cart".tr(),
         )
       ]);
     }
@@ -46,8 +47,7 @@ class _HomePageState extends NyState<HomePage> {
     return Scaffold(
       appBar: appBar,
       body: _getByIndex(_index),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _index,
+      bottomNavigationBar: BlurNavbar(
         onTap: (index) => setState(() => _index = index),
         items: navbarItems,
       ),
@@ -56,7 +56,7 @@ class _HomePageState extends NyState<HomePage> {
 
   ImageIcon _getIcon(String path) => ImageIcon(AssetImage(getImageAsset(path)));
 
-  NyStatefulWidget _getByIndex(int index) => switch (index) {
+  StatefulWidget _getByIndex(int index) => switch (index) {
         0 => MenuNavBarPage(),
         1 => AppealNavBarPage(),
         _ => MenuNavBarPage(),

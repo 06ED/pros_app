@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/app/controllers/appeal_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-import '../../../app/models/dish.dart';
+import '../../../app/models/appeal.dart';
 
-class MenuNavBarPage extends NyStatefulWidget {
-  MenuNavBarPage() : super('/menu', child: _MenuNavBarPageState());
+class AppealNavBarPage extends NyStatefulWidget<AppealController> {
+  AppealNavBarPage() : super('/appeal', child: _AppealNavBarPageState());
 }
 
-class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
-  late List<Dish> dishes;
+class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
+  late List<Appeal> appeals;
 
   @override
   boot() {
-    dishes = [
-      Dish(name: "обед 1", cost: 123.2),
-      Dish(name: "обед 2", cost: 283.2),
-      Dish(name: "обед 3", cost: 143.24),
+    appeals = [
+      Appeal(text: "loremas sdaf dsafdsf sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
+      Appeal(text: "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
+      Appeal(text: "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
     ];
   }
 
@@ -29,7 +30,7 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
           children: [
             Container(
               child: Text(
-                "headers.menu".tr(),
+                "headers.appeal".tr(),
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -39,22 +40,22 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: dishes.length,
+                itemCount: appeals.length,
                 itemBuilder: (context, index) => Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(dishes[index].name!),
-                      Text(dishes[index].cost.toString()),
-                    ],
+                    children: [],
                   ),
                 ),
               ),
             ),
+            FloatingActionButton(
+              onPressed: () {},
+              child: Icon(Icons.add),
+            )
           ],
         ),
       ),
-      loading: Placeholder(),
     );
   }
 }

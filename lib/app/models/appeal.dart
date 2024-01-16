@@ -3,6 +3,8 @@ import 'package:nylo_framework/nylo_framework.dart';
 class Appeal extends Model {
   String? text;
 
+  Appeal({this.text});
+
   Appeal.fromJson(dynamic data) {
     text = data["text"];
   }

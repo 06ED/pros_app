@@ -1,3 +1,6 @@
+import 'package:flutter_app/app/controllers/appeal_controller.dart';
+import 'package:flutter_app/app/controllers/menu_controller.dart';
+
 import '/app/controllers/home_controller.dart';
 import '/app/models/user.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -52,8 +55,7 @@ final Map<Type, NyApiService> apiDecoders = {
 */
 final Map<Type, BaseController Function()> controllers = {
   HomeController: () => HomeController(),
-
-  // ...
-
+  AppealController: () => AppealController(),
+  MenuController: () => MenuController(),
 };
 
