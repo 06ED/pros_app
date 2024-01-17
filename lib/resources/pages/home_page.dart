@@ -6,6 +6,7 @@ import '../../app/models/user.dart';
 import '/app/controllers/home_controller.dart';
 import 'navbar/appeal_navbar_page.dart';
 import 'navbar/menu_navbar_page.dart';
+import 'navbar/orders_navbar_page.dart';
 
 class HomePage extends NyStatefulWidget<HomeController> {
   static const path = '/home';
@@ -59,6 +60,7 @@ class _HomePageState extends NyState<HomePage> {
   StatefulWidget _getByIndex(int index) => switch (index) {
         0 => MenuNavBarPage(),
         1 => AppealNavBarPage(),
+        2 => OrdersNavBarPage(),
         _ => MenuNavBarPage(),
       };
 }

@@ -9,5 +9,15 @@
     "orders": "ЗАКАЗЫ",
     "cart": "КОРЗИНА"
   },
+  "pages": {
+    "orders": {
+      "order": "Заказ №{{number}}",
+      "status": "Статус",
+      "status_mode": {
+        "ready": "Готов",
+        "in_process": "Готовится"
+      }
+    }
+  },
   "logo": "СТОЛОВАЯ\nМИНПРОСВЕЩЕНИЯ\nРОССИИ"
 }
