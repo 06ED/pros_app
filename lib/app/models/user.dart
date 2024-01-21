@@ -7,7 +7,7 @@ class User extends Model {
   String? image;
   bool? isVip;
 
-  User();
+  User({this.name, this.email, this.image, this.isVip});
 
   User.fromJson(dynamic data) {
     name = data['name'];
@@ -16,7 +16,7 @@ class User extends Model {
     isVip = data['isVip'];
   }
 
-  ImageProvider get imageWidget => NetworkImage(image!);
+  NetworkImage get imageWidget => NetworkImage(image!);
 
   @override
   toJson() => {"name": name, "email": email, "image": image, "isVip": isVip};

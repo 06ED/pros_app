@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/resources/pages/account_page.dart';
 import '../app/models/user.dart';
 import '/config/toast_notification.dart';
 import '/resources/widgets/loader_widget.dart';
@@ -24,6 +25,18 @@ const Widget loader = Loader();
 AppBar appBar = AppBar(
   backgroundColor: const Color.fromARGB(255, 30, 54, 133),
   title: logo,
+  actions: [
+    Container(
+      margin: EdgeInsets.all(10),
+      child: InkWell(
+        onTap: () => routeTo(AccountPage.path, navigationType: NavigationType.pushReplace),
+        child: CircleAvatar(
+          backgroundImage: Auth.user<User>()!.imageWidget,
+          backgroundColor: const Color.fromARGB(255, 30, 54, 133),
+        ),
+      ),
+    ),
+  ],
 );
 
 Widget getToastNotificationWidget(

@@ -8,6 +8,8 @@ class Order extends Model {
   bool? status;
   List<Dish>? dishes;
 
+  Order({this.cost, this.time, this.status, this.dishes});
+
   Order.fromJson(dynamic data) {
     cost = data["cost"];
     time = DateTime.tryParse(data["time"]);

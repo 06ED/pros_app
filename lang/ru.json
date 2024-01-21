@@ -1,7 +1,8 @@
 {
   "headers": {
     "menu": "Меню",
-    "appeal": "Обращения"
+    "appeals": "Обращения",
+    "orders": "Заказы"
   },
   "navbar": {
     "menu": "МЕНЮ",
@@ -11,12 +12,15 @@
   },
   "pages": {
     "orders": {
-      "order": "Заказ №{{number}}",
+      "order": "Заказ",
       "status": "Статус",
       "status_mode": {
         "ready": "Готов",
         "in_process": "Готовится"
       }
+    },
+    "appeals": {
+      "appeal": "Обращение"
     }
   },
   "logo": "СТОЛОВАЯ\nМИНПРОСВЕЩЕНИЯ\nРОССИИ"
