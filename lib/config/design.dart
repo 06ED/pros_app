@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/resources/widgets/dialog_widget.dart';
 import '/resources/pages/account_page.dart';
 import '../app/models/user.dart';
-import '/config/toast_notification.dart';
 import '/resources/widgets/loader_widget.dart';
 import '/resources/widgets/logo_widget.dart';
-import '/resources/widgets/toast_notification_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 /*
@@ -29,7 +28,8 @@ AppBar appBar = AppBar(
     Container(
       margin: EdgeInsets.all(10),
       child: InkWell(
-        onTap: () => routeTo(AccountPage.path, navigationType: NavigationType.pushReplace),
+        onTap: () => routeTo(AccountPage.path,
+            navigationType: NavigationType.pushReplace),
         child: CircleAvatar(
           backgroundImage: Auth.user<User>()!.imageWidget,
           backgroundColor: const Color.fromARGB(255, 30, 54, 133),
@@ -39,16 +39,6 @@ AppBar appBar = AppBar(
   ],
 );
 
-Widget getToastNotificationWidget(
-    {required ToastNotificationStyleType style,
-    Function(ToastNotificationStyleMetaHelper helper)?
-        toastNotificationStyleMeta,
-    Function? onDismiss}) {
-  if (toastNotificationStyleMeta == null) return SizedBox.shrink();
-
-  ToastMeta toastMeta =
-      toastNotificationStyleMeta(NyToastNotificationStyleMetaHelper(style));
-
-  return ToastNotification(toastMeta, onDismiss: onDismiss);
-  // resources/widgets/toast_notification.dart
-}
+Widget getDialog({Widget? child}) => DialogWidget(
+      child: child,
+    );
