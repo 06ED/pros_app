@@ -9,17 +9,20 @@ class DialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(
-        sigmaX: 10,
-        sigmaY: 10,
-      ),
-      child: Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 10,
+          sigmaY: 10,
         ),
-        child: SingleChildScrollView(
-          child: child,
+        child: Dialog(
+          backgroundColor: Color.fromARGB(0, 0, 0, 0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: SingleChildScrollView(
+            child: child,
+          ),
         ),
       ),
     );

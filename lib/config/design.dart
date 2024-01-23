@@ -39,6 +39,9 @@ AppBar appBar = AppBar(
   ],
 );
 
-Widget getDialog({Widget? child}) => DialogWidget(
-      child: child,
+void getDialog({required context, Widget? child}) => showDialog(
+      context: context,
+      builder: (context) => DialogWidget(
+        child: child,
+      ),
     );

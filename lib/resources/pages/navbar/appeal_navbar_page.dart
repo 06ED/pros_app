@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/controllers/appeal_controller.dart';
+import 'package:flutter_app/config/design.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 import '../../../app/models/appeal.dart';
@@ -85,7 +86,7 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 30, 54, 133),
-          onPressed: () {},
+          onPressed: () => getDialog(context: context),
           child: Icon(
             Icons.add,
             size: 30,
