@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/resources/widgets/dialog_widget.dart';
+import '../resources/widgets/dialog_widget.dart';
 import '/resources/pages/account_page.dart';
 import '../app/models/user.dart';
 import '/resources/widgets/loader_widget.dart';

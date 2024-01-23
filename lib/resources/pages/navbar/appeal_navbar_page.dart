@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/controllers/appeal_controller.dart';
-import 'package:flutter_app/config/design.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 import '../../../app/models/appeal.dart';
+import '../../../config/design.dart';
 
 class AppealNavBarPage extends NyStatefulWidget<AppealController> {
   AppealNavBarPage() : super('/appeal', child: _AppealNavBarPageState());
@@ -35,18 +35,18 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
           text: "loremas sdaf dsafdsf sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
       Appeal(
           text:
-          "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
+              "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
       Appeal(
           text:
-          "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
+              "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
       Appeal(
           text: "loremas sdaf dsafdsf sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
       Appeal(
           text:
-          "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
+              "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
       Appeal(
           text:
-          "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
+              "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
     ];
   }
 
@@ -86,7 +86,13 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 30, 54, 133),
-          onPressed: () => getDialog(context: context),
+          onPressed: () => getDialog(
+            context: context,
+            child: Container(
+              padding: EdgeInsets.all(20),
+              child: Text("It works!!!!"),
+            ),
+          ),
           child: Icon(
             Icons.add,
             size: 30,
