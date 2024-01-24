@@ -86,14 +86,9 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 30, 54, 133),
-          onPressed: () => getDialog(
-            context: context,
-            title: Text("pages.appeals.create".tr()),
-            child: Container(
-              padding: EdgeInsets.all(20),
-              child: Text("It works!!!!"),
-            ),
-          ),
+          onPressed: () => _generateDialog(() {
+            Navigator.pop(context);
+          }),
           child: Icon(
             Icons.add,
             size: 30,
@@ -143,4 +138,72 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
           ),
         ),
       );
+
+  void _generateDialog(VoidCallback onPress) => getDialog(
+    context: context,
+    title: Text(
+      "pages.appeals.create".tr(),
+      style: TextStyle(
+        color: Color.fromARGB(255, 30, 54, 133),
+        fontWeight: FontWeight.bold,
+        fontSize: 18,
+      ),
+    ),
+    child: Container(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: [
+          TextField(
+            keyboardType: TextInputType.multiline,
+            maxLines: 11,
+            minLines: 11,
+            decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Color.fromARGB(255, 30, 54, 133), width: 2),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey, width: 2),
+              ),
+              hintStyle: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+              ),
+              hintText: "pages.appeals.text".tr(),
+            ),
+            style: TextStyle(
+              color: Color.fromARGB(255, 30, 54, 133),
+              fontSize: 14,
+            ),
+            scrollPadding: EdgeInsets.all(20.0),
+            autofocus: true,
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            child: TextButton(
+              onPressed: onPress,
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll<Color>(
+                  Color.fromARGB(255, 30, 54, 133),
+                ),
+              ),
+              child: Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 30,
+                ),
+                child: Text(
+                  "pages.appeals.send".tr(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }

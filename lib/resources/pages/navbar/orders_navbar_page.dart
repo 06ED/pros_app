@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/models/dish.dart';
 import 'package:flutter_app/app/models/order.dart';
+import 'package:flutter_app/config/design.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class OrdersNavBarPage extends NyStatefulWidget {
@@ -137,9 +138,9 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
   }
 
   Widget _buildItem(Order order) => InkWell(
-    splashColor: Colors.transparent,
-    onTap: () {},
-    child: Container(
+        splashColor: Colors.transparent,
+        onTap: () => _generateDialog(order),
+        child: Container(
           decoration: BoxDecoration(
             color: Color.fromARGB(255, 241, 241, 241),
             borderRadius: BorderRadius.circular(10),
@@ -150,34 +151,67 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Text(
-                    "pages.orders.order".tr(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text(
-                    " №${orderItems.indexOf(order) + 1}",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Color.fromARGB(255, 30, 54, 133),
-                    ),
-                  ),
-                ],
-              ),
+              _getOrderName(orderItems.indexOf(order) + 1),
               Text(
-                "pages.orders.status".tr() +
-                    ": " +
-                    (order.status!
-                        ? "pages.orders.status_mode.ready".tr()
-                        : "pages.orders.status_mode.in_process".tr()),
+                "pages.orders.status".tr() + ": ${_getStatusByOrder(order)}",
               )
             ],
           ),
         ),
-  );
+      );
+
+  Widget _getOrderName(int count) => Row(
+        children: [
+          Text(
+            "pages.orders.order".tr(),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+          Text(
+            " №$count",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: Color.fromARGB(255, 30, 54, 133),
+            ),
+          ),
+        ],
+      );
+
+  void _generateDialog(Order order) => getDialog(
+        context: context,
+        title: _getOrderName(orderItems.indexOf(order) + 1),
+        child: Column(
+          children: [
+            Text("Цена: ${order.cost}"),
+            Text("Статус: ${_getStatusByOrder(order)}"),
+            Text("Дата и время подачи: ${order.time.toString()}"),
+            Center(
+              child: Column(
+                children: [
+                  Text("Состав заказа"),
+                  Table(
+                    border: TableBorder.symmetric(
+                      inside: BorderSide(
+                        width: 2,
+                        color: Color.fromARGB(255, 30, 54, 133),
+                      ),
+                    ),
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    children: [
+
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+
+  String _getStatusByOrder(Order order) => order.status!
+      ? "pages.orders.status_mode.ready".tr()
+      : "pages.orders.status_mode.in_process".tr();
 }
