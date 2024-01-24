@@ -21,27 +21,33 @@ const Widget logo = Logo();
 const Widget loader = Loader();
 // resources/widgets/loader_widget.dart
 
-AppBar appBar = AppBar(
-  backgroundColor: const Color.fromARGB(255, 30, 54, 133),
-  title: logo,
-  actions: [
-    Container(
-      margin: EdgeInsets.all(10),
-      child: InkWell(
-        onTap: () => routeTo(AccountPage.path,
-            navigationType: NavigationType.pushReplace),
-        child: CircleAvatar(
-          backgroundImage: Auth.user<User>()!.imageWidget,
-          backgroundColor: const Color.fromARGB(255, 30, 54, 133),
+AppBar get appBar => AppBar(
+      backgroundColor: const Color.fromARGB(255, 30, 54, 133),
+      title: logo,
+      actions: [
+        Container(
+          margin: EdgeInsets.all(10),
+          child: InkWell(
+            onTap: () => routeTo(AccountPage.path,
+                navigationType: NavigationType.pushReplace),
+            child: CircleAvatar(
+              backgroundImage: Auth.user<User>()!.imageWidget,
+              backgroundColor: const Color.fromARGB(255, 30, 54, 133),
+            ),
+          ),
         ),
-      ),
-    ),
-  ],
-);
+      ],
+    );
 
-void getDialog({required context, Widget? child}) => showDialog(
+void getDialog({
+  required context,
+  required Widget title,
+  Widget? child,
+}) =>
+    showDialog(
       context: context,
       builder: (context) => DialogWidget(
         child: child,
+        title: title,
       ),
     );

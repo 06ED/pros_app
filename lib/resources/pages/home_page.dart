@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter_app/config/design.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:flutter/material.dart';

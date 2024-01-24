@@ -88,6 +88,7 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
           backgroundColor: Color.fromARGB(255, 30, 54, 133),
           onPressed: () => getDialog(
             context: context,
+            title: Text("pages.appeals.create".tr()),
             child: Container(
               padding: EdgeInsets.all(20),
               child: Text("It works!!!!"),
