@@ -13,41 +13,8 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
   late List<Appeal> appeals;
 
   @override
-  boot() {
-    appeals = [
-      Appeal(
-          text: "loremas sdaf dsafdsf sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
-      Appeal(
-          text:
-              "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
-      Appeal(
-          text:
-              "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
-      Appeal(
-          text: "loremas sdaf dsafdsf sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
-      Appeal(
-          text:
-              "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
-      Appeal(
-          text:
-              "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
-      Appeal(
-          text: "loremas sdaf dsafdsf sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
-      Appeal(
-          text:
-              "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
-      Appeal(
-          text:
-              "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
-      Appeal(
-          text: "loremas sdaf dsafdsf sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
-      Appeal(
-          text:
-              "loremas sdaf dsafdsf aS2 12 sdfgdfgsfdsfd sddsf sdafassdaf dsafsda"),
-      Appeal(
-          text:
-              "loremas sdaf dsafdsf sdfgdfgsfads asfadsdsfd sddsf sdafassdaf dsafadsdsafsda"),
-    ];
+  boot() async {
+    appeals = await widget.controller.getAppeals() ?? [];
   }
 
   @override

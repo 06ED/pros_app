@@ -11,6 +11,6 @@ class MenuController extends Controller {
     super.construct(context);
   }
 
-  Future<List<Dish>> getDishes() async =>
+  Future<List<Dish>?> getDishes() async =>
       await api<MenuApiService>((request) => request.fetchMenu());
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/app/models/dish.dart';
+import 'package:flutter_app/app/controllers/order_controller.dart';
 import 'package:flutter_app/app/models/order.dart';
 import 'package:flutter_app/config/design.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-class OrdersNavBarPage extends NyStatefulWidget {
+class OrdersNavBarPage extends NyStatefulWidget<OrderController> {
   OrdersNavBarPage() : super('/orders', child: _OrdersNavBarPageState());
 }
 
@@ -12,99 +12,8 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
   late List<Order> orderItems;
 
   @override
-  boot() {
-    orderItems = [
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-      Order(
-        cost: 200,
-        time: DateTime.now(),
-        status: false,
-        dishes: <Dish>[
-          Dish(name: "обед 1", cost: 123.2),
-          Dish(name: "обед 2", cost: 283.2),
-          Dish(name: "обед 3", cost: 143.24),
-        ],
-      ),
-    ];
+  boot() async {
+    orderItems = await widget.controller.getOrders() ?? [];
   }
 
   @override

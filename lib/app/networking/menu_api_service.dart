@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_app/app/models/dish.dart';
+import 'package:flutter_app/app/networking/api_service.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-import '../../config/decoders.dart';
-
-class MenuApiService extends NyApiService {
-  MenuApiService({BuildContext? buildContext})
-      : super(buildContext, decoders: modelDecoders);
+class MenuApiService extends ApiService {
+  MenuApiService({super.buildContext});
 
   @override
   String get baseUrl => "${getEnv('API_BASE_URL')}/menu";
