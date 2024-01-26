@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/app/networking/dio/interceptors/bearer_auth_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '/config/decoders.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -22,13 +23,8 @@ class ApiService extends NyApiService {
 
   @override
   final interceptors = {
+    BearerAuthInterceptor: BearerAuthInterceptor(),
     if (getEnv('APP_DEBUG') == true)
-    PrettyDioLogger: PrettyDioLogger()
+    PrettyDioLogger: PrettyDioLogger(),
   };
-
-  Future fetchTestData() async {
-    return await network(
-        request: (request) => request.get("/endpoint-path"),
-    );
-  }
 }
