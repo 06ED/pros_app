@@ -1,3 +1,5 @@
+import 'package:flutter_app/resources/pages/auth_page.dart';
+
 import '/resources/pages/account_page.dart';
 import '/resources/pages/home_page.dart';
 
@@ -15,6 +17,7 @@ import 'package:nylo_framework/nylo_framework.dart';
 */
 
 appRouter() => nyRoutes((router) {
+  router.route(AuthPage.path, (context) => AuthPage(), authPage: true);
   router.route(HomePage.path, (context) => HomePage(), initialRoute: true, transition: PageTransitionType.fade);
   router.route(AccountPage.path, (context) => AccountPage(), transition: PageTransitionType.fade);
 });

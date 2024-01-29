@@ -1,5 +1,6 @@
 import 'package:flutter_app/app/controllers/account_controller.dart';
 import 'package:flutter_app/app/controllers/appeal_controller.dart';
+import 'package:flutter_app/app/controllers/auth_controller.dart';
 import 'package:flutter_app/app/controllers/menu_controller.dart';
 import 'package:flutter_app/app/controllers/order_controller.dart';
 import 'package:flutter_app/app/networking/appeal_api_service.dart';
@@ -63,5 +64,6 @@ final Map<Type, BaseController Function()> controllers = {
   MenuController: () => MenuController(),
   OrderController: () => OrderController(),
   AccountController: () => AccountController(),
+  AuthController: () => AuthController(),
 };
 
