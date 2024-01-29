@@ -1,5 +1,5 @@
-import 'package:flutter_app/app/models/dish.dart';
-import 'package:flutter_app/app/networking/api_service.dart';
+import '../../app/models/dish.dart';
+import '../../app/networking/api_service.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class MenuApiService extends ApiService {

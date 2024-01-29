@@ -1,4 +1,4 @@
-import 'package:flutter_app/resources/pages/auth_page.dart';
+import '/resources/pages/auth_page.dart';
 
 import '/resources/pages/account_page.dart';
 import '/resources/pages/home_page.dart';

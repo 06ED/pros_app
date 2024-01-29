@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter_app/app/controllers/controller.dart';
+import '../controllers/controller.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 

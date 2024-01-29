@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/app/controllers/controller.dart';
+import '../controllers/controller.dart';
 
 class AccountController extends Controller {
   @override

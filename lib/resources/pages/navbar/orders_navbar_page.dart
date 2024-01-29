@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/app/controllers/order_controller.dart';
-import 'package:flutter_app/app/models/order.dart';
-import 'package:flutter_app/config/design.dart';
+import '/app/controllers/order_controller.dart';
+import '/app/models/order.dart';
+import '/config/design.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class OrdersNavBarPage extends NyStatefulWidget<OrderController> {

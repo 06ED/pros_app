@@ -1,11 +1,11 @@
-import 'package:flutter_app/app/controllers/account_controller.dart';
-import 'package:flutter_app/app/controllers/appeal_controller.dart';
-import 'package:flutter_app/app/controllers/auth_controller.dart';
-import 'package:flutter_app/app/controllers/menu_controller.dart';
-import 'package:flutter_app/app/controllers/order_controller.dart';
-import 'package:flutter_app/app/networking/appeal_api_service.dart';
-import 'package:flutter_app/app/networking/menu_api_service.dart';
-import 'package:flutter_app/app/networking/orders_api_service.dart';
+import '/app/controllers/account_controller.dart';
+import '/app/controllers/appeal_controller.dart';
+import '/app/controllers/auth_controller.dart';
+import '/app/controllers/menu_controller.dart';
+import '/app/controllers/order_controller.dart';
+import '/app/networking/appeal_api_service.dart';
+import '/app/networking/menu_api_service.dart';
+import '/app/networking/orders_api_service.dart';
 
 import '/app/controllers/home_controller.dart';
 import '/app/models/user.dart';

@@ -1,5 +1,5 @@
-import 'package:flutter_app/app/models/order.dart';
-import 'package:flutter_app/app/networking/api_service.dart';
+import '../../app/models/order.dart';
+import '../../app/networking/api_service.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class OrdersApiService extends ApiService {

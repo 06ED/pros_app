@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/app/controllers/auth_controller.dart';
+import '/app/controllers/auth_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 import '../../config/design.dart';
