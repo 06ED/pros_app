@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '/app/controllers/appeal_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-import '../../../app/models/appeal.dart';
-import '../../../config/design.dart';
+import '/app/models/appeal.dart';
+import '/config/design.dart';
 
 class AppealNavBarPage extends NyStatefulWidget<AppealController> {
   AppealNavBarPage() : super('/appeal', child: _AppealNavBarPageState());

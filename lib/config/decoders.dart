@@ -1,3 +1,5 @@
+import 'package:pros_app/app/controllers/cart_controller.dart';
+
 import '/app/controllers/account_controller.dart';
 import '/app/controllers/appeal_controller.dart';
 import '/app/controllers/auth_controller.dart';
@@ -65,5 +67,6 @@ final Map<Type, BaseController Function()> controllers = {
   OrderController: () => OrderController(),
   AccountController: () => AccountController(),
   AuthController: () => AuthController(),
+  CartController: () => CartController(),
 };
 

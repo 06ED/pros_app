@@ -2,14 +2,16 @@ import 'package:flutter/widgets.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class User extends Model {
+  String? id;
   String? name;
   String? email;
   String? image;
   bool? isVip;
 
-  User({this.name, this.email, this.image, this.isVip});
+  User({this.id, this.name, this.email, this.image, this.isVip});
 
   User.fromJson(dynamic data) {
+    id = data["id"];
     name = data['name'];
     email = data['email'];
     image = data['image'];
@@ -19,5 +21,11 @@ class User extends Model {
   NetworkImage get imageWidget => NetworkImage(image!);
 
   @override
-  toJson() => {"name": name, "email": email, "image": image, "isVip": isVip};
+  toJson() => {
+        "id": id,
+        "name": name,
+        "email": email,
+        "image": image,
+        "isVip": isVip,
+      };
 }

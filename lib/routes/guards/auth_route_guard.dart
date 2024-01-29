@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/resources/pages/home_page.dart';
+import '/resources/pages/auth_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 /*
@@ -15,12 +15,11 @@ class AuthRouteGuard extends NyRouteGuard {
   AuthRouteGuard();
 
   @override
-  Future<bool> canOpen(BuildContext? context, NyArgument? data) async {
-    return (await Auth.loggedIn());
-  }
+  Future<bool> canOpen(BuildContext? context, NyArgument? data) async =>
+      await Auth.loggedIn();
 
   @override
   redirectTo(BuildContext? context, NyArgument? data) async {
-    await routeTo(HomePage.path);
+    await routeTo(AuthPage.path);
   }
 }
