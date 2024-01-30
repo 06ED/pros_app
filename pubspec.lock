@@ -204,7 +204,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_secure_storage:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: flutter_secure_storage
       sha256: ffdbb60130e4665d2af814a0267c481bcf522c41ae2e43caf69fa0146876d685
@@ -265,21 +265,21 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_web_auth_2:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_web_auth_2
-      sha256: "3ea3a0cc539ca74319f4f2f7484f62742fe5b2ff9a0fca37575426d6e6f07901"
+      sha256: "0da41e631a368e02366fc1a9b79dd8da191e700a836878bc54466fff51c07df2"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.1"
+    version: "2.2.1"
   flutter_web_auth_2_platform_interface:
     dependency: transitive
     description:
       name: flutter_web_auth_2_platform_interface
-      sha256: e8669e262005a8354389ba2971f0fc1c36188481234ff50d013aaf993f30f739
+      sha256: f6fa7059ff3428c19cd756c02fef8eb0147131c7e64591f9060c90b5ab84f094
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0"
+    version: "2.1.4"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -389,6 +389,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.38.1"
+  oauth2_client:
+    dependency: "direct main"
+    description:
+      name: oauth2_client
+      sha256: e23986d8976d6af361aa52689ef175113379c6e13859011e18bdf8ef9c6754e2
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.2"
   package_config:
     dependency: transitive
     description:
@@ -517,6 +525,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  random_string:
+    dependency: transitive
+    description:
+      name: random_string
+      sha256: "03b52435aae8cbdd1056cf91bfc5bf845e9706724dd35ae2e99fa14a1ef79d02"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
   recase:
     dependency: transitive
     description:
@@ -803,5 +819,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.2.0 <4.0.0"
+  dart: ">=3.2.0 <3.11.0"
   flutter: ">=3.16.0"
