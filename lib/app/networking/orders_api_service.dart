@@ -9,5 +9,5 @@ class OrdersApiService extends ApiService {
   String get baseUrl => "${getEnv('API_BASE_URL')}/orders";
 
   Future<List<Order>?> fetchOrders() async =>
-      await network<List<Order>>(request: (request) => request.get(""));
+      await network<List<Order>>(request: (request) => request.get("/user"));
 }

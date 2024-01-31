@@ -4,6 +4,7 @@ import 'package:pros_app/app/models/dish.dart';
 import 'package:pros_app/app/networking/api_service.dart';
 import 'package:pros_app/app/networking/dishes_api_service.dart';
 
+import '/app/models/order.dart';
 import '/app/models/category.dart';
 import '/app/controllers/account_controller.dart';
 import '/app/controllers/appeal_controller.dart';
@@ -30,17 +31,18 @@ import 'package:nylo_framework/nylo_framework.dart';
 */
 
 final Map<Type, dynamic> modelDecoders = {
-  // User
-  List<User>: (data) => List.from(data).map((json) => User.fromJson(json)).toList(),
+  // Model decoders
   User: (data) => User.fromJson(data),
-
-  // Appeal
-  List<Appeal>: (data) => List.from(data).map((json) => Appeal.fromJson(json)).toList(),
   Appeal: (data) => Appeal.fromJson(data),
 
+  // Model list decoders
+  List<User>: (data) => List.from(data).map((json) => User.fromJson(json)).toList(),
+  List<Appeal>: (data) => List.from(data).map((json) => Appeal.fromJson(json)).toList(),
   List<Category>: (data) => List.from(data).map((json) => Category.fromJson(json)).toList(),
+  List<Order>: (data) => List.from(data).map((json) => Order.fromJson(json)).toList(),
   List<Dish>: (data) => List.from(data).map((json) => Dish.fromJson(json)).toList(),
 
+  // Other decoders
   Null: (data) => null,
 };
 
