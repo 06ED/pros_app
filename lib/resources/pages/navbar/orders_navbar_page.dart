@@ -94,9 +94,8 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
         title: _getOrderName(orderItems.indexOf(order) + 1),
         child: Column(
           children: [
-            Text("Цена: ${order.cost}"),
+            Text("Цена: ${order.price}"),
             Text("Статус: ${_getStatusByOrder(order)}"),
-            Text("Дата и время подачи: ${order.time.toString()}"),
             Center(
               child: Column(
                 children: [
@@ -120,7 +119,5 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
         ),
       );
 
-  String _getStatusByOrder(Order order) => order.status!
-      ? "pages.orders.status_mode.ready".tr()
-      : "pages.orders.status_mode.in_process".tr();
+  String _getStatusByOrder(Order order) => order.status!;
 }

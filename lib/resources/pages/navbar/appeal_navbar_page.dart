@@ -10,6 +10,7 @@ class AppealNavBarPage extends NyStatefulWidget<AppealController> {
 }
 
 class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
+  final TextEditingController _controller = new TextEditingController();
   late List<Appeal> appeals;
 
   @override
@@ -53,8 +54,10 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 30, 54, 133),
-          onPressed: () => _generateDialog(() {
+          onPressed: () => _generateDialog(() async {
+            await widget.controller.createAppeal(_controller.text);
             Navigator.pop(context);
+            _controller.clear();
           }),
           child: Icon(
             Icons.add,
@@ -68,7 +71,9 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
 
   Widget _buildAppeal(Appeal item, int index) => InkWell(
         splashColor: Colors.transparent,
-        onTap: () {},
+        onTap: () {
+
+        },
         child: Container(
           margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(15),
@@ -98,9 +103,9 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
                   ),
                 ],
               ),
-              Text(item.text!.length > 30
-                  ? item.text!.substring(0, 30) + "..."
-                  : item.text!),
+              Text(item.body!.length > 30
+                  ? item.body!.substring(0, 30) + "..."
+                  : item.body!),
             ],
           ),
         ),
@@ -121,6 +126,7 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
       child: Column(
         children: [
           TextField(
+            controller: _controller,
             keyboardType: TextInputType.multiline,
             maxLines: 11,
             minLines: 11,

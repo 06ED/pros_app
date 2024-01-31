@@ -58,13 +58,13 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              dish.name!,
+              dish.title!,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
             ),
-            Text("${dish.cost}P"),
+            Text("${dish.price}P"),
           ],
         ),
       );

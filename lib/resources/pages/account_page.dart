@@ -36,8 +36,12 @@ class _AccountPageState extends NyState<AccountPage> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: self.imageWidget,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Color.fromARGB(255, 30, 54, 133),
+                  child: Icon(
+                    Icons.person,
+                    size: 70,
+                    color: Colors.white,
+                  ),
                 ),
                 Text(
                   self.name!,
@@ -60,7 +64,8 @@ class _AccountPageState extends NyState<AccountPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromARGB(255, 30, 54, 133),
-        onPressed: () => routeTo(HomePage.path, navigationType: NavigationType.pushReplace),
+        onPressed: () =>
+            routeTo(HomePage.path, navigationType: NavigationType.pushReplace),
         mini: true,
         child: Icon(
           Icons.arrow_back_outlined,

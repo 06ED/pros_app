@@ -4,17 +4,21 @@ import 'dish.dart';
 
 class Order extends Model {
   String? id;
-  int? cost;
-  DateTime? time;
-  bool? status;
+  int? price;
+  String? placeOfDelivery;
+  int? countOfPersons;
+  String? wishes;
+  String? status;
   List<Dish>? dishes;
 
-  Order({this.id, this.cost, this.time, this.status, this.dishes});
+  Order({this.id, this.price, this.status, this.dishes});
 
   Order.fromJson(dynamic data) {
     id = data["id"];
-    cost = data["cost"];
-    time = DateTime.tryParse(data["time"]);
+    price = data["price"];
+    placeOfDelivery = data["placeOfDelivery"];
+    countOfPersons = data["countOfPersons"];
+    wishes = data["wishes"];
     status = data["status"];
     dishes = (data["dishes"] as List).map((e) => Dish.fromJson(e)).toList();
   }
@@ -23,8 +27,10 @@ class Order extends Model {
   toJson() {
     return {
       "id": id,
-      "cost": cost,
-      "time": time.toString(),
+      "price": price,
+      "placeOfDelivery": placeOfDelivery,
+      "countOfPersons": countOfPersons,
+      "wishes": wishes,
       "status": status,
       "dishes": dishes?.map((e) => e.toJson()),
     };

@@ -6,8 +6,15 @@ class AppealApiService extends ApiService {
   AppealApiService({super.buildContext});
 
   @override
-  String get baseUrl => "${getEnv('API_BASE_URL')}/appeal";
+  String get baseUrl => "${getEnv('API_BASE_URL')}/appeals";
 
-  Future<List<Appeal>?> fetchMenu() async =>
-      await network<List<Appeal>>(request: (request) => request.get(""));
+  Future<List<Appeal>?> fetchAppeals() async =>
+      await network<List<Appeal>>(request: (request) => request.get("/user"));
+
+  Future<Null> createAppeal(String body) async => await network(
+        request: (request) => request.post(
+          "",
+          data: {"body": body},
+        ),
+      );
 }

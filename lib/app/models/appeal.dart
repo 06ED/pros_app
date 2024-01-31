@@ -2,18 +2,18 @@ import 'package:nylo_framework/nylo_framework.dart';
 
 class Appeal extends Model {
   String? id;
-  String? text;
+  String? body;
 
-  Appeal({this.id, this.text});
+  Appeal({this.id, this.body});
 
   Appeal.fromJson(dynamic data) {
     id = data["id"];
-    text = data["text"];
+    body = data["body"];
   }
 
   @override
   toJson() => {
-        "text": text,
+        "body": body,
         "id": id,
       };
 }

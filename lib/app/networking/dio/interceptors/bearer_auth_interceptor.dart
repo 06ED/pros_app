@@ -1,23 +1,23 @@
-import '/config/storage_keys.dart';
+import 'dart:developer';
+
 import 'package:nylo_framework/nylo_framework.dart';
 
 class BearerAuthInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    String? userToken = Backpack.instance.read(StorageKey.userToken);
-    if (userToken != null) {
-      options.headers.addAll({"Authorization": "Bearer $userToken"});
-    }
-    return super.onRequest(options, handler);
-  }
-
-  @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    log(response.data.toString());
     handler.next(response);
   }
 
   @override
   void onError(DioException dioException, ErrorInterceptorHandler handler) {
+    // if (dioException.response!.statusCode != 401) {
+    //   return;
+    // }
+
+    log(dioException.response!.requestOptions.method);
+    log(dioException.message!.toString());
+    log(dioException.response!.realUri.toString());
     handler.next(dioException);
   }
 }

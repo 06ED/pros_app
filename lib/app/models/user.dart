@@ -1,31 +1,30 @@
-import 'package:flutter/widgets.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class User extends Model {
   String? id;
   String? name;
+  String? surname;
   String? email;
-  String? image;
-  bool? isVip;
+  List<dynamic>? roles;
 
-  User({this.id, this.name, this.email, this.image, this.isVip});
+  User({this.id, this.name, this.surname, this.email, this.roles});
 
   User.fromJson(dynamic data) {
     id = data["id"];
     name = data['name'];
+    surname = data['surname'];
     email = data['email'];
-    image = data['image'];
-    isVip = data['isVip'];
+    roles = data['roles'];
   }
 
-  NetworkImage get imageWidget => NetworkImage(image!);
+  bool get isVip => (roles ?? []).contains("vip");
 
   @override
   toJson() => {
         "id": id,
         "name": name,
+        "surname": surname,
         "email": email,
-        "image": image,
-        "isVip": isVip,
+        "roles": roles,
       };
 }

@@ -1,12 +1,17 @@
 import 'package:pros_app/app/controllers/cart_controller.dart';
+import 'package:pros_app/app/models/appeal.dart';
+import 'package:pros_app/app/models/dish.dart';
+import 'package:pros_app/app/networking/api_service.dart';
+import 'package:pros_app/app/networking/dishes_api_service.dart';
 
+import '/app/models/category.dart';
 import '/app/controllers/account_controller.dart';
 import '/app/controllers/appeal_controller.dart';
 import '/app/controllers/auth_controller.dart';
 import '/app/controllers/menu_controller.dart';
 import '/app/controllers/order_controller.dart';
 import '/app/networking/appeal_api_service.dart';
-import '/app/networking/menu_api_service.dart';
+import '/app/networking/categories_api_service.dart';
 import '/app/networking/orders_api_service.dart';
 
 import '/app/controllers/home_controller.dart';
@@ -25,11 +30,18 @@ import 'package:nylo_framework/nylo_framework.dart';
 */
 
 final Map<Type, dynamic> modelDecoders = {
+  // User
   List<User>: (data) => List.from(data).map((json) => User.fromJson(json)).toList(),
-  //
   User: (data) => User.fromJson(data),
 
-  // User: (data) => User.fromJson(data),
+  // Appeal
+  List<Appeal>: (data) => List.from(data).map((json) => Appeal.fromJson(json)).toList(),
+  Appeal: (data) => Appeal.fromJson(data),
+
+  List<Category>: (data) => List.from(data).map((json) => Category.fromJson(json)).toList(),
+  List<Dish>: (data) => List.from(data).map((json) => Dish.fromJson(json)).toList(),
+
+  Null: (data) => null,
 };
 
 /*
@@ -44,9 +56,11 @@ final Map<Type, dynamic> modelDecoders = {
 */
 
 final Map<Type, NyApiService> apiDecoders = {
-  MenuApiService: MenuApiService(),
+  CategoryApiService: CategoryApiService(),
   AppealApiService: AppealApiService(),
   OrdersApiService: OrdersApiService(),
+  DishesApiService: DishesApiService(),
+  ApiService: ApiService(),
 };
 
 

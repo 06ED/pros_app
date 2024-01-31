@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:pros_app/config/storage_keys.dart';
 import '../controllers/controller.dart';
 import '/app/models/appeal.dart';
 import '/app/networking/appeal_api_service.dart';
@@ -11,5 +14,9 @@ class AppealController extends Controller {
   }
 
   Future<List<Appeal>?> getAppeals() async =>
-      await api<AppealApiService>((request) => request.fetchMenu());
+      await api<AppealApiService>((request) => request.fetchAppeals());
+
+  Future<void> createAppeal(String body) async {
+    return await api<AppealApiService>((request) => request.createAppeal(body));
+  }
 }

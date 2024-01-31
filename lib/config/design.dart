@@ -31,9 +31,12 @@ AppBar get appBar => AppBar(
             onTap: () => routeTo(AccountPage.path,
                 navigationType: NavigationType.pushReplace),
             child: CircleAvatar(
-              backgroundImage: Auth.user<User>()!.imageWidget,
-              backgroundColor: const Color.fromARGB(255, 30, 54, 133),
-            ),
+                backgroundColor: Colors.white,
+                child: Icon(
+                    Icons.person,
+                    color: const Color.fromARGB(255, 30, 54, 133),
+                ),
+            )
           ),
         ),
       ],
