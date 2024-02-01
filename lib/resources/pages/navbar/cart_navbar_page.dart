@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../app/models/dish.dart';
+import '/app/models/dish.dart';
 import '/app/controllers/cart_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 

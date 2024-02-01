@@ -15,21 +15,21 @@ pluginManagement {
     }
 }
 
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-
-        maven {
-            ame = "GitHubPackages"
-            url = uri("*URL из договора*")
-            credentials {
-                username = "*username из договора*"
-                password = "*password из договора*"
-            }
-        }
-    }
-}
+//dependencyResolutionManagement {
+//    repositories {
+//        google()
+//        mavenCentral()
+//
+//        maven {
+//            ame = "GitHubPackages"
+//            url = uri("*URL из договора*")
+//            credentials {
+//                username = "*username из договора*"
+//                password = "*password из договора*"
+//            }
+//        }
+//    }
+//}
 
 include ":app"
 

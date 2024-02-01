@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import '../../../app/models/user.dart';
@@ -98,7 +100,10 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
                 ],
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await NyStorage.addToCollection("cart",
+                      item: jsonEncode({dish.toJson(): 1}));
+                },
                 icon: CircleAvatar(
                   child: Icon(
                     Icons.add,
