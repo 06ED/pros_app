@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
-import '../../../app/models/user.dart';
+import '/app/models/user.dart';
+import '/config/design.dart';
+import '../../widgets/counter_widget.dart';
 import '/app/models/category.dart';
 import '/app/controllers/menu_controller.dart' as controller;
 import '/app/models/dish.dart';
@@ -101,8 +103,23 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
               ),
               IconButton(
                 onPressed: () async {
+                  int counter = 1;
+
+                  getDialog(
+                    context: context,
+                    title: Text("pages.menu.count".tr()),
+                    child: Column(
+                      children: [
+                        CounterButton(
+                          counter,
+                          onPressed: (count) => counter = count,
+                        ),
+                      ],
+                    ),
+                  );
+
                   await NyStorage.addToCollection("cart",
-                      item: jsonEncode({dish.toJson(): 1}));
+                      item: jsonEncode({dish.toJson(): counter}));
                 },
                 icon: CircleAvatar(
                   child: Icon(

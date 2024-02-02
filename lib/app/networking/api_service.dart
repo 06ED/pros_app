@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import '../../app/networking/dio/interceptors/bearer_auth_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -36,5 +34,12 @@ class ApiService extends NyApiService {
     headers.addBearerToken(await NyStorage.read(StorageKey.userToken));
 
     return headers;
+  }
+
+  @override
+  Future<bool> shouldRefreshToken() {
+
+    // TODO: implement shouldRefreshToken
+    return super.shouldRefreshToken();
   }
 }

@@ -7,7 +7,13 @@ class User extends Model {
   String? email;
   List<dynamic>? roles;
 
-  User({this.id, this.name, this.surname, this.email, this.roles});
+  User({
+    this.id,
+    this.name,
+    this.surname,
+    this.email,
+    this.roles,
+  });
 
   User.fromJson(dynamic data) {
     id = data["id"];

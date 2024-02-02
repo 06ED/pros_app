@@ -12,7 +12,7 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
 
   @override
   boot() async {
-    cartItems = await widget.controller.getCartItems() ?? {};
+    cartItems = await widget.controller.getCartItems();
   }
 
   @override

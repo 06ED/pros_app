@@ -71,9 +71,7 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
 
   Widget _buildAppeal(Appeal item, int index) => InkWell(
         splashColor: Colors.transparent,
-        onTap: () {
-
-        },
+        onTap: () {},
         child: Container(
           margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(15),
@@ -112,71 +110,71 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
       );
 
   void _generateDialog(VoidCallback onPress) => getDialog(
-    context: context,
-    title: Text(
-      "pages.appeals.create".tr(),
-      style: TextStyle(
-        color: Color.fromARGB(255, 30, 54, 133),
-        fontWeight: FontWeight.bold,
-        fontSize: 18,
-      ),
-    ),
-    child: Container(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        children: [
-          TextField(
-            controller: _controller,
-            keyboardType: TextInputType.multiline,
-            maxLines: 11,
-            minLines: 11,
-            decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: Color.fromARGB(255, 30, 54, 133), width: 2),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 2),
-              ),
-              hintStyle: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
-              ),
-              hintText: "pages.appeals.text".tr(),
-            ),
-            style: TextStyle(
-              color: Color.fromARGB(255, 30, 54, 133),
-              fontSize: 14,
-            ),
-            scrollPadding: EdgeInsets.all(20.0),
-            autofocus: true,
+        context: context,
+        title: Text(
+          "pages.appeals.create".tr(),
+          style: TextStyle(
+            color: Color.fromARGB(255, 30, 54, 133),
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
-          Container(
-            margin: EdgeInsets.all(10),
-            child: TextButton(
-              onPressed: onPress,
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color.fromARGB(255, 30, 54, 133),
+        ),
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            children: [
+              TextField(
+                controller: _controller,
+                keyboardType: TextInputType.multiline,
+                maxLines: 11,
+                minLines: 11,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Color.fromARGB(255, 30, 54, 133), width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 2),
+                  ),
+                  hintStyle: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                  ),
+                  hintText: "pages.appeals.text".tr(),
                 ),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 30, 54, 133),
+                  fontSize: 14,
+                ),
+                scrollPadding: EdgeInsets.all(20.0),
+                autofocus: true,
               ),
-              child: Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 30,
-                ),
-                child: Text(
-                  "pages.appeals.send".tr(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
+              Container(
+                margin: EdgeInsets.all(10),
+                child: TextButton(
+                  onPressed: onPress,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(
+                      Color.fromARGB(255, 30, 54, 133),
+                    ),
+                  ),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 30,
+                    ),
+                    child: Text(
+                      "pages.appeals.send".tr(),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }

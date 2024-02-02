@@ -11,13 +11,9 @@ class BearerAuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException dioException, ErrorInterceptorHandler handler) {
-    // if (dioException.response!.statusCode != 401) {
-    //   return;
-    // }
-
+    handler.next(dioException);
     log(dioException.response!.requestOptions.method);
     log(dioException.message!.toString());
     log(dioException.response!.realUri.toString());
-    handler.next(dioException);
   }
 }

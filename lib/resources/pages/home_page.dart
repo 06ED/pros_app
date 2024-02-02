@@ -1,9 +1,10 @@
 import '/config/design.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:flutter/material.dart';
-import '../../app/models/user.dart';
+import '/app/models/user.dart';
 import '/app/controllers/home_controller.dart';
 import 'navbar/appeal_navbar_page.dart';
+import 'navbar/cart_navbar_page.dart';
 import 'navbar/menu_navbar_page.dart';
 import 'navbar/orders_navbar_page.dart';
 
@@ -25,7 +26,7 @@ class _HomePageState extends NyState<HomePage> {
       _getItem("appeal", 1),
     ];
 
-    if (Auth.user<User>()!.isVip!) {
+    if (Auth.user<User>()!.isVip) {
       navbarItems.addAll([
         _getItem("orders", 2),
         _getItem("cart", 3),
@@ -64,6 +65,7 @@ class _HomePageState extends NyState<HomePage> {
         0 => MenuNavBarPage(),
         1 => AppealNavBarPage(),
         2 => OrdersNavBarPage(),
+        3 => CartNavBarPage(),
         _ => MenuNavBarPage(),
       };
 }

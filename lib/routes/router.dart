@@ -17,7 +17,7 @@ import 'package:nylo_framework/nylo_framework.dart';
 */
 
 appRouter() => nyRoutes((router) {
-  router.route(AuthPage.path, (context) => AuthPage(), authPage: true);
-  router.route(HomePage.path, (context) => HomePage(), initialRoute: true, transition: PageTransitionType.fade);
+  router.route(AuthPage.path, (context) => AuthPage(), authPage: true, initialRoute: true);
+  router.route(HomePage.path, (context) => HomePage(), transition: PageTransitionType.fade);
   router.route(AccountPage.path, (context) => AccountPage(), transition: PageTransitionType.fade);
 });
