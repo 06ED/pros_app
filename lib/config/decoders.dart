@@ -1,8 +1,10 @@
 import 'package:pros_app/app/controllers/cart_controller.dart';
 import 'package:pros_app/app/models/appeal.dart';
 import 'package:pros_app/app/models/dish.dart';
+import 'package:pros_app/app/models/menu.dart';
 import 'package:pros_app/app/networking/api_service.dart';
 import 'package:pros_app/app/networking/dishes_api_service.dart';
+import 'package:pros_app/app/networking/menu_api_service.dart';
 
 import '/app/models/order.dart';
 import '/app/models/category.dart';
@@ -34,6 +36,8 @@ final Map<Type, dynamic> modelDecoders = {
   // Model decoders
   User: (data) => User.fromJson(data),
   Appeal: (data) => Appeal.fromJson(data),
+  Menu: (data) => Menu.fromJson(data),
+  Dish: (data) => Dish.fromJson(data),
 
   // Model list decoders
   List<User>: (data) => List.from(data).map((json) => User.fromJson(json)).toList(),
@@ -62,6 +66,7 @@ final Map<Type, NyApiService> apiDecoders = {
   AppealApiService: AppealApiService(),
   OrdersApiService: OrdersApiService(),
   DishesApiService: DishesApiService(),
+  MenuApiService: MenuApiService(),
   ApiService: ApiService(),
 };
 

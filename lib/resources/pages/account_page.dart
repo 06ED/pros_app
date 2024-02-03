@@ -56,6 +56,49 @@ class _AccountPageState extends NyState<AccountPage> {
                     fontSize: 18,
                   ),
                 ),
+                Padding(padding: EdgeInsets.all(20)),
+                Text(
+                  "Имя: ${self.name}",
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+                Text(
+                  "Фамилия: ${self.surname}",
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+                Text(
+                  "Должность: ${self.roles!.first}",
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.all(20)),
+                TextButton(
+                  onPressed: () {},
+                  autofocus: true,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(
+                      Color.fromARGB(255, 30, 54, 133),
+                    ),
+                  ),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 50,
+                    ),
+                    child: Text(
+                      "Выйти",
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

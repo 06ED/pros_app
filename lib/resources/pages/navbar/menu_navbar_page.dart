@@ -107,19 +107,55 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
 
                   getDialog(
                     context: context,
-                    title: Text("pages.menu.count".tr()),
+                    title: Text(
+                      "pages.menu.count".tr(),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 30, 54, 133),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        CounterButton(
-                          counter,
-                          onPressed: (count) => counter = count,
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          child: CounterButton(
+                            counter,
+                            onPressed: (count) {
+                              counter = count;
+                            },
+                            size: 30,
+                          ),
                         ),
+                        Padding(padding: EdgeInsets.all(60)),
+                        TextButton(
+                          onPressed: () async {
+                            await NyStorage.addToCollection("cart",
+                                item: jsonEncode({dish.id: counter}));
+                            Navigator.pop(context);
+                            reboot();
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll<Color>(
+                                Color.fromARGB(255, 30, 54, 133)),
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              "Создать",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   );
-
-                  await NyStorage.addToCollection("cart",
-                      item: jsonEncode({dish.toJson(): counter}));
                 },
                 icon: CircleAvatar(
                   child: Icon(
@@ -133,6 +169,12 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
           ),
         )
       : Container(
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 241, 241, 241),
+            borderRadius: BorderRadius.circular(10),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -143,7 +185,7 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
                 ),
               ),
               Text(
-                dish.price.toString(),
+                dish.price.toString() + "P",
                 style: TextStyle(
                   fontSize: 18,
                 ),

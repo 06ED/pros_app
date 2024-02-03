@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pros_app/config/design.dart';
+import 'package:pros_app/resources/widgets/counter_widget.dart';
+import 'package:pros_app/resources/widgets/sber_pay_button.dart';
 import '/app/models/dish.dart';
 import '/app/controllers/cart_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -21,11 +24,12 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
       child: () => Container(
         padding: EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               child: Text(
-                "headers.orders".tr(),
+                "headers.cart".tr(),
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -36,8 +40,41 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
             Expanded(
               child: ListView.builder(
                 itemCount: cartItems.length,
-                itemBuilder: (context, index) =>
-                    _buildItem(cartItems.keys.toList()[index]),
+                itemBuilder: (context, index) => _buildItem(
+                  cartItems.keys.toList()[index],
+                  cartItems.values.toList()[index],
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                getDialog(
+                  context: context,
+                  title: Text("data"),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color.fromARGB(255, 30, 54, 133),
+                        width: 1,
+                      )
+                    ),
+                    width: 300,
+                    height: 100,
+                    child: SberPayButton(),
+                  ),
+                );
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll<Color>(
+                  Color.fromARGB(255, 30, 54, 133),
+                ),
+              ),
+              child: Text(
+                "Заказать",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
               ),
             ),
           ],
@@ -46,25 +83,44 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
     );
   }
 
-  Widget _buildItem(Dish dish) => Container(
+  Widget _buildItem(Dish dish, int count) => Container(
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 241, 241, 241),
           borderRadius: BorderRadius.circular(10),
         ),
         padding: EdgeInsets.all(10),
         margin: EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              dish.title!,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  dish.title!,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                Text("${dish.price}P"),
+              ],
             ),
-            Text("${dish.price}P"),
+            CounterButton(
+              count,
+              size: 20,
+              onPressed: (count) async {
+                if (count <= 0) {
+                  await widget.controller.removeItem(dish);
+                  reboot();
+                  return;
+                }
+
+                cartItems[dish] = count;
+                reboot();
+              },
+            ),
           ],
         ),
       );

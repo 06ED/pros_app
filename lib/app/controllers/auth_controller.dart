@@ -21,9 +21,8 @@ class AuthController extends Controller {
         tokenRequest.refreshToken ?? StorageKey.refreshToken);
 
     // Setup user
-    final Map decodedToken = jsonDecode(
-      utf8.decode(base64Decode(tokenRequest.accessToken!.split(".")[1])),
-    );
+    final Map decodedToken = getTokenPayload(tokenRequest.accessToken!);
+
     final user = User(
       id: decodedToken["sid"],
       email: decodedToken["email"],
@@ -33,6 +32,6 @@ class AuthController extends Controller {
     );
 
     // Logging in
-    Auth.login(user);
+    await Auth.login(user);
   }
 }

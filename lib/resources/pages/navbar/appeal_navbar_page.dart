@@ -58,6 +58,7 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
             await widget.controller.createAppeal(_controller.text);
             Navigator.pop(context);
             _controller.clear();
+            reboot();
           }),
           child: Icon(
             Icons.add,

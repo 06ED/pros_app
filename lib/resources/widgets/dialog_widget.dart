@@ -23,6 +23,7 @@ class DialogWidget extends StatelessWidget {
             height: 500,
             padding: EdgeInsets.all(15),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -4,7 +4,7 @@ import 'dish.dart';
 
 class Order extends Model {
   String? id;
-  int? price;
+  double? price;
   String? placeOfDelivery;
   int? countOfPersons;
   String? wishes;

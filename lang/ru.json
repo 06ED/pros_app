@@ -2,7 +2,8 @@
   "headers": {
     "menu": "Меню",
     "appeals": "Обращения",
-    "orders": "Заказы"
+    "orders": "Заказы",
+    "cart": "Корзина"
   },
   "navbar": {
     "menu": "МЕНЮ",

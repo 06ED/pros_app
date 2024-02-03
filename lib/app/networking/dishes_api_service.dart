@@ -12,4 +12,7 @@ class DishesApiService extends ApiService {
       await network(
         request: (request) => request.get("/category/${category.id}"),
       );
+
+  Future<Dish?> fetchDishById(String id) async =>
+      await network(request: (request) => request.get("/$id"));
 }
