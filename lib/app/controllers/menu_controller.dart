@@ -25,17 +25,31 @@ class MenuController extends Controller {
         (request) => request.fetchCategories(todayMenu));
   }
 
-  Future<List<Dish>?> getDishesByCategory(Category category) async {
-    final nonFilteredItems = await api<DishesApiService>(
-      (request) => request.fetchDishesByCategory(category),
-    ) as List<Dish>;
-    final inCartIds = (await NyStorage.readCollection(StorageKey.cart))
-        .map((e) => jsonDecode(e).keys.first)
-        .toList();
+  Future<List<Dish>?> getDishesByCategory(Category category) async =>
+      await api<DishesApiService>(
+        (request) => request.fetchDishesByCategory(category),
+      );
 
-    // Filtering items cuz they can be in cart
-    return nonFilteredItems
-        .where((element) => !inCartIds.contains(element.id))
-        .toList();
+  Future<void> addInCart(Dish dish, int count) async {
+    // Check if it in cart
+    final cartItems = await NyStorage.readCollection(StorageKey.cart);
+
+    for (dynamic item in cartItems) {
+      final decodedItem = jsonDecode(item);
+
+      if (decodedItem.keys.first == dish.id) {
+        final beforeCount = decodedItem.values.first;
+
+        // Saving to cart
+        await NyStorage.deleteFromCollection(cartItems.indexOf(item),
+            key: StorageKey.cart);
+        await NyStorage.addToCollection(StorageKey.cart,
+            item: jsonEncode({dish.id: beforeCount + count}));
+        return;
+      }
+    }
+
+    await NyStorage.addToCollection(StorageKey.cart,
+        item: jsonEncode({dish.id: count}));
   }
 }

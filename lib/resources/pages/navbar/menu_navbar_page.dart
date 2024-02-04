@@ -132,8 +132,7 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
                         Padding(padding: EdgeInsets.all(60)),
                         TextButton(
                           onPressed: () async {
-                            await NyStorage.addToCollection("cart",
-                                item: jsonEncode({dish.id: counter}));
+                            await widget.controller.addInCart(dish, counter);
                             Navigator.pop(context);
                             reboot();
                           },

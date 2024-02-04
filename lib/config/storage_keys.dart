@@ -16,5 +16,5 @@ class StorageKey {
   static String refreshToken = "REFRESH_TOKEN";
   static String authUser = getEnv('AUTH_USER_KEY', defaultValue: 'AUTH_USER');
 
-  static String cart = "cart";
+  static String cart = "CART";
 }
