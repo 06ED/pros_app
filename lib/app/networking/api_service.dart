@@ -48,6 +48,6 @@ class ApiService extends NyApiService {
       clientId: getEnv("AUTH_CLIENT_ID"),
     );
 
-    await NyStorage.store(StorageKey.authUser, token.accessToken);
+    await NyStorage.store(StorageKey.userToken, token.accessToken);
   }
 }

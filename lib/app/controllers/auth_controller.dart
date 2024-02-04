@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'dart:developer';
-
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pros_app/app/models/user.dart';
 import 'package:pros_app/config/storage_keys.dart';
 
@@ -10,6 +8,12 @@ import 'package:nylo_framework/nylo_framework.dart';
 
 class AuthController extends Controller {
   Future<void> login() async {
+    // Checking token
+    // final refreshToken = await NyStorage.read(StorageKey.refreshToken);
+    // if (refreshToken != null && !JwtDecoder.isExpired(refreshToken)) {
+    //   return;
+    // }
+
     // Parsing token
     final tokenRequest = await client.getTokenWithAuthCodeFlow(
         clientId: getEnv("AUTH_CLIENT_ID"));

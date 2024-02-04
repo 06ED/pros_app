@@ -70,7 +70,7 @@ class _AccountPageState extends NyState<AccountPage> {
                   ),
                 ),
                 Text(
-                  "Должность: ${self.roles!.first}",
+                  "Роль: ${self.roles!.first}",
                   style: TextStyle(
                     fontSize: 18,
                   ),

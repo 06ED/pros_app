@@ -7,12 +7,14 @@ import 'package:pros_app/app/controllers/controller.dart';
 import 'package:pros_app/app/models/dish.dart';
 import 'package:pros_app/app/networking/dishes_api_service.dart';
 
+import '/config/storage_keys.dart';
+
 class CartController extends Controller {
   static const _sdkChannel = MethodChannel("com.spay.sdk/pay");
 
   Future<Map<Dish, int>> getCartItems() async {
     final map = <Dish, int>{};
-    for (String item in await NyStorage.readCollection("cart")) {
+    for (String item in await NyStorage.readCollection(StorageKey.cart)) {
       log(item);
       final decodedMap = jsonDecode(item) as Map<String, dynamic>;
       map[await getDishById(decodedMap.keys.first)] =
@@ -31,11 +33,11 @@ class CartController extends Controller {
   }
 
   Future<void> removeItem(Dish dish) async {
-    final need = await NyStorage.readCollection("cart");
+    final need = await NyStorage.readCollection(StorageKey.cart);
     final needObject = need
         .where((element) => jsonDecode(element).keys.first == dish.id)
         .first;
-    await NyStorage.deleteFromCollection(need.indexOf(needObject), key: "cart");
+    await NyStorage.deleteFromCollection(need.indexOf(needObject), key: StorageKey.cart);
   }
 
   Future<void> pay(double price) async {
