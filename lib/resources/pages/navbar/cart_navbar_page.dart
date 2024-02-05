@@ -53,11 +53,10 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
                   title: Text("data"),
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Color.fromARGB(255, 30, 54, 133),
-                        width: 1,
-                      )
-                    ),
+                        border: Border.all(
+                      color: Color.fromARGB(255, 30, 54, 133),
+                      width: 1,
+                    )),
                     width: 300,
                     height: 100,
                     child: SberPayButton(),
@@ -111,14 +110,10 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
               count,
               size: 20,
               onPressed: (count) async {
-                if (count <= 0) {
-                  await widget.controller.removeItem(dish);
+                await widget.controller.updateDishCount(dish, count);
+                setState(() {
                   reboot();
-                  return;
-                }
-
-                cartItems[dish] = count;
-                reboot();
+                });
               },
             ),
           ],
