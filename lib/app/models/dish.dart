@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 class Dish extends Model {
@@ -31,6 +32,11 @@ class Dish extends Model {
     carbohydrates = data["carbohydrates"];
     price = data["price"];
   }
+
+  Image get image => Image.network(
+      "https://android-obzor.com/wp-content/uploads/2022/03"
+          "/1627241072_7-funart-pro-p-kot-s-ogromnimi-glazami"
+          "-zhivotnie-krasivo-9.jpg");
 
   @override
   toJson() => {

@@ -83,84 +83,88 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
             color: Color.fromARGB(255, 241, 241, 241),
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              dish.image,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    dish.title!,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text(dish.price.toString()),
-                ],
-              ),
-              IconButton(
-                onPressed: () async {
-                  int counter = 1;
-
-                  getDialog(
-                    context: context,
-                    title: Text(
-                      "pages.menu.count".tr(),
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 30, 54, 133),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        dish.title!,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(10),
-                          child: CounterButton(
-                            counter,
-                            onPressed: (count) {
-                              counter = count;
-                            },
-                            size: 30,
+                      Text(dish.price.toString()),
+                    ],
+                  ),
+                  IconButton(
+                    onPressed: () async {
+                      int counter = 1;
+
+                      getDialog(
+                        context: context,
+                        title: Text(
+                          "pages.menu.count".tr(),
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 30, 54, 133),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
                         ),
-                        Padding(padding: EdgeInsets.all(60)),
-                        TextButton(
-                          onPressed: () async {
-                            await widget.controller.addInCart(dish, counter);
-                            Navigator.pop(context);
-                            reboot();
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll<Color>(
-                                Color.fromARGB(255, 30, 54, 133)),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              "Создать",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.all(10),
+                              child: CounterButton(
+                                counter,
+                                onPressed: (count) {
+                                  counter = count;
+                                },
+                                size: 30,
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                            Padding(padding: EdgeInsets.all(60)),
+                            TextButton(
+                              onPressed: () async {
+                                await widget.controller.addInCart(dish, counter);
+                                Navigator.pop(context);
+                              },
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll<Color>(
+                                    Color.fromARGB(255, 30, 54, 133)),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  "Создать",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                    icon: CircleAvatar(
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Color.fromARGB(255, 30, 54, 133),
                     ),
-                  );
-                },
-                icon: CircleAvatar(
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.white,
                   ),
-                  backgroundColor: Color.fromARGB(255, 30, 54, 133),
-                ),
+                ],
               ),
             ],
           ),

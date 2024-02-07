@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pros_app/config/design.dart';
 import 'package:pros_app/resources/widgets/counter_widget.dart';
-import 'package:pros_app/resources/widgets/sber_pay_button.dart';
 import '/app/models/dish.dart';
 import '/app/controllers/cart_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -47,22 +45,7 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
               ),
             ),
             TextButton(
-              onPressed: () {
-                getDialog(
-                  context: context,
-                  title: Text("data"),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                      color: Color.fromARGB(255, 30, 54, 133),
-                      width: 1,
-                    )),
-                    width: 300,
-                    height: 100,
-                    child: SberPayButton(),
-                  ),
-                );
-              },
+              onPressed: () {},
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(
                   Color.fromARGB(255, 30, 54, 133),
@@ -111,9 +94,7 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
               size: 20,
               onPressed: (count) async {
                 await widget.controller.updateDishCount(dish, count);
-                setState(() {
-                  reboot();
-                });
+                reboot();
               },
             ),
           ],
