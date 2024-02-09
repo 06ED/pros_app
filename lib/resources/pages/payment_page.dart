@@ -10,6 +10,14 @@ class PaymentPage extends NyStatefulWidget {
 class _PaymentPageState extends NyState<PaymentPage> {
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned(child: CircleAvatar(
+            child: Text("Заказ"),
+          ))
+        ],
+      ),
+    );
   }
 }
