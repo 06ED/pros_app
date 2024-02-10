@@ -12,5 +12,5 @@ class MenuApiService extends ApiService {
   Future<Menu?> fetchMenu() async =>
       await network<Menu>(
           request: (request) =>
-              request.get("/today"));
+              request.get("/type/today"));
 }

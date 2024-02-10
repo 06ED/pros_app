@@ -34,9 +34,13 @@ class Dish extends Model {
   }
 
   Image get image => Image.network(
-      "https://android-obzor.com/wp-content/uploads/2022/03"
-          "/1627241072_7-funart-pro-p-kot-s-ogromnimi-glazami"
-          "-zhivotnie-krasivo-9.jpg");
+        "https://android-obzor.com/wp-content/uploads/2022/03"
+        "/1627241072_7-funart-pro-p-kot-s-ogromnimi-glazami"
+        "-zhivotnie-krasivo-9.jpg",
+        width: double.infinity,
+        height: 200,
+        fit: BoxFit.fitWidth,
+      );
 
   @override
   toJson() => {

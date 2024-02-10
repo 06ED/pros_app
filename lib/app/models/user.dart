@@ -25,6 +25,10 @@ class User extends Model {
 
   bool get isVip => (roles ?? []).contains("vip");
 
+  bool get isSuperVip => (roles ?? []).contains("super_vip");
+
+  bool get canCreateOrders => isVip || isSuperVip;
+
   @override
   toJson() => {
         "id": id,

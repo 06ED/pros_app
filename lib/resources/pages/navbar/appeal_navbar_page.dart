@@ -72,7 +72,12 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
 
   Widget _buildAppeal(Appeal item, int index) => InkWell(
         splashColor: Colors.transparent,
-        onTap: () {},
+        onTap: () {
+          routeTo("/appeal", data: {
+            "appeal": item,
+            "number": index + 1,
+          });
+        },
         child: Container(
           margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(15),

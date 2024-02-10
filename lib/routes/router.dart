@@ -1,4 +1,4 @@
-import 'package:pros_app/resources/pages/payment_page.dart';
+import 'package:pros_app/resources/pages/payment_page/payment_page.dart';
 import 'package:pros_app/routes/guards/auth_route_guard.dart';
 
 import '/resources/pages/auth_page.dart';
@@ -23,8 +23,7 @@ appRouter() => nyRoutes((router) {
       router.route(
         AuthPage.path,
         (context) => AuthPage(),
-        initialRoute: true,
-        authPage: true,
+
       );
       router.route(HomePage.path, (context) => HomePage(),
           transition: PageTransitionType.fade,
@@ -41,4 +40,11 @@ appRouter() => nyRoutes((router) {
           routeGuards: [
             AuthRouteGuard(),
           ]);
+      router.route(
+        PaymentPage.path,
+        (context) => PaymentPage(),
+        transition: PageTransitionType.fade,
+        initialRoute: true,
+        authPage: true,
+      );
     });
