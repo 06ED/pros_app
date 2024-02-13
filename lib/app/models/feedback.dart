@@ -4,6 +4,8 @@ class Feedback extends Model {
   String? id;
   String? body;
 
+  bool empty = false;
+
   Feedback({
     this.id,
     this.body,
@@ -12,6 +14,11 @@ class Feedback extends Model {
   Feedback.fromJson(dynamic data) {
     id = data["id"];
     body = data["body"];
+  }
+
+  Feedback.empty() {
+    empty = true;
+    body = "";
   }
 
   @override

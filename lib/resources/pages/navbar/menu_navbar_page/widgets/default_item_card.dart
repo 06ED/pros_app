@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/bootstrap/helpers.dart';
 import '/app/models/dish.dart';
 
 class DefaultItemCard extends StatelessWidget {
@@ -31,10 +32,14 @@ class DefaultItemCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  dish.title!,
-                  style: TextStyle(
-                    fontSize: 18,
+                SizedBox(
+                  width: 150,
+                  child: Text(
+                    dish.title!,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
                 Text(

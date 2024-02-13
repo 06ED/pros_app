@@ -48,7 +48,7 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () => routeTo("/payment", data: cartItems),
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(
                   Color.fromARGB(255, 30, 54, 133),
@@ -69,36 +69,60 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
   }
 
   Widget _buildItem(Dish dish, int count) => Container(
+        margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 241, 241, 241),
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  dish.title!,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                Text("${dish.price}P"),
-              ],
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                topLeft: Radius.circular(10),
+              ),
+              child: dish.image,
             ),
-            CounterButton(
-              count,
-              size: 20,
-              onPressed: (count) async {
-                widget.controller.updateDishCount(dish, count);
-                reboot();
-              },
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 150,
+                        child: Text(
+                          dish.title!,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      Text("${dish.price}P"),
+                    ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: Color.fromARGB(255, 30, 54, 133),
+                      ),
+                    ),
+                    child: CounterButton(
+                      count,
+                      size: 20,
+                      onPressed: (count) async {
+                        widget.controller.updateDishCount(dish, count);
+                        reboot();
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

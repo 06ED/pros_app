@@ -6,7 +6,7 @@ import '/app/models/appeal.dart';
 import '/config/design.dart';
 
 class AppealNavBarPage extends NyStatefulWidget<AppealController> {
-  AppealNavBarPage() : super('/appeal', child: _AppealNavBarPageState());
+  AppealNavBarPage() : super('/appeals', child: _AppealNavBarPageState());
 }
 
 class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
@@ -45,7 +45,7 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
                 child: ListView.builder(
                   itemCount: appeals.length,
                   itemBuilder: (context, index) => Container(
-                    child: _buildAppeal(appeals[index], index),
+                    child: _buildAppeal(appeals[index]),
                   ),
                 ),
               ),
@@ -70,14 +70,11 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
     );
   }
 
-  Widget _buildAppeal(Appeal item, int index) => InkWell(
+  Widget _buildAppeal(Appeal item) => InkWell(
         splashColor: Colors.transparent,
-        onTap: () {
-          routeTo("/appeal", data: {
-            "appeal": item,
-            "number": index + 1,
-          });
-        },
+        onTap: () => routeTo("/appeal", data: {
+          "appeal": item,
+        }),
         child: Container(
           margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(15),
@@ -98,7 +95,7 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
                     ),
                   ),
                   Text(
-                    " №${index + 1}",
+                    " №${item.number}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,

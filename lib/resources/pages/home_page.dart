@@ -26,7 +26,7 @@ class _HomePageState extends NyState<HomePage> {
       _getItem("appeal", 1),
     ];
 
-    if (Auth.user<User>()!.isVip) {
+    if (Auth.user<User>()!.hasVipPerms) {
       navbarItems.addAll([
         _getItem("orders", 2),
         _getItem("cart", 3),

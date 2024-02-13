@@ -27,7 +27,7 @@ class User extends Model {
 
   bool get isSuperVip => (roles ?? []).contains("super_vip");
 
-  bool get canCreateOrders => isVip || isSuperVip;
+  bool get hasVipPerms => isVip || isSuperVip;
 
   @override
   toJson() => {

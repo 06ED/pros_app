@@ -77,7 +77,7 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
         children: dishes.map((dish) => _buildItem(dish)).toList(),
       );
 
-  Widget _buildItem(Dish dish) => Auth.user<User>()!.isVip
+  Widget _buildItem(Dish dish) => Auth.user<User>()!.hasVipPerms
       ? VipItemCard(
           dish: dish,
           addInCart: (count, dish) async =>

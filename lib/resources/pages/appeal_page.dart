@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:pros_app/app/models/appeal.dart';
+import 'package:pros_app/resources/widgets/loader_widget.dart';
 
 class AppealPage extends NyStatefulWidget {
   static const path = "/appeal";
@@ -14,69 +15,98 @@ class _AppealPageState extends NyState<AppealPage> {
   @override
   Widget build(BuildContext context) {
     final Appeal appeal = widget.data()["appeal"];
-    final int number = widget.data()["number"];
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            Text(
-              "pages.appeals.appeal".tr(),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-            Text(
-              " №${number}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Color.fromARGB(255, 30, 54, 133),
-              ),
-            ),
-          ],
+        title: Text(
+          "pages.appeals.appeal".tr() + " №${appeal.number}",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.white,
+          ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 30, 54, 133),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ToggleButtons(
-            children: [
-              _buildText("Обращение", _current == 0),
-              _buildText("Ответ", _current == 1),
-            ],
-            isSelected: [true, false],
-            color: Colors.white,
-            selectedColor: Color.fromARGB(255, 30, 54, 133),
-            borderRadius: BorderRadius.circular(10),
-            borderColor: Color.fromARGB(255, 30, 54, 133),
-            onPressed: (index) => setState(() {
-              _current = index;
-            }),
+          Padding(padding: EdgeInsets.all(10)),
+          Center(
+            child: ToggleButtons(
+              children: [
+                _buildText("Обращение", _current == 0),
+                _buildText("Ответ", _current == 1),
+              ],
+              isSelected: [_current == 0, _current == 1],
+              fillColor: Color.fromARGB(255, 30, 54, 133),
+              borderRadius: BorderRadius.circular(10),
+              borderColor: Color.fromARGB(255, 30, 54, 133),
+              selectedBorderColor: Color.fromARGB(255, 30, 54, 133),
+              onPressed: (index) => setState(() {
+                _current = index;
+              }),
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(10),
           ),
-          _buildContent(_current == 0 ? appeal.feedback!.body! : appeal.body!),
+          _current == 0
+              ? _buildContent(appeal.body!)
+              : appeal.feedback!.empty
+                  ? Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 150,
+                    ),
+                    child: Center(
+                        child: Column(
+                          children: [
+                            Loader(),
+                            Text(
+                              "На рассмотрении",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Color.fromARGB(255, 30, 54, 133),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  )
+                  : _buildContent(appeal.feedback!.body!)
         ],
       ),
     );
   }
 
-  Widget _buildText(String text, bool isSelected) => Text(
-        text,
-        style: TextStyle(
-          color: isSelected ? Colors.white : Color.fromARGB(255, 30, 54, 133),
+  Widget _buildText(String text, bool isSelected) => Container(
+        margin: EdgeInsets.all(10),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 20,
+            color: isSelected ? Colors.white : Color.fromARGB(255, 30, 54, 133),
+          ),
         ),
       );
 
   Widget _buildContent(String data) => Expanded(
-        child: SingleChildScrollView(
-          child: Text(
-            data,
-            style: TextStyle(
-              fontSize: 16,
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Color.fromARGB(255, 30, 54, 133),
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: Text(
+              data,
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromARGB(255, 30, 54, 133),
+              ),
             ),
           ),
         ),

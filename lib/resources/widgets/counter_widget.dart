@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 class CounterButton extends StatefulWidget {
   final int initValue;
-  final bool allowMinus;
+  final int min;
+  final int max;
   final int size;
   final Function(int counter)? onPressed;
 
-  CounterButton(
-    this.initValue, {
+  CounterButton(this.initValue, {
     super.key,
     this.onPressed,
     this.size = 50,
-    this.allowMinus = false,
+    this.min = -100,
+    this.max = 100,
   });
 
   @override
@@ -34,10 +35,11 @@ class _CounterButtonState extends State<CounterButton> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildIcon(
-            onPressed: () => setState(() {
-              _counter++;
-              invokeMethod();
-            }),
+            onPressed: () =>
+                setState(() {
+                  _counter++;
+                  invokeMethod();
+                }),
             icon: Icon(
               Icons.add,
               size: widget.size.toDouble(),
@@ -51,14 +53,20 @@ class _CounterButtonState extends State<CounterButton> {
             ),
           ),
           _buildIcon(
-            onPressed: () => setState(() {
-              if (!widget.allowMinus && _counter == 0) {
-                return;
-              }
+            onPressed: () =>
+                setState(() {
+                  if (widget.min >= _counter) {
+                    _counter = widget.min;
+                    return;
+                  }
+                  if (widget.max <= _counter) {
+                    _counter = widget.max;
+                    return;
+                  }
 
-              _counter--;
-              invokeMethod();
-            }),
+                  _counter--;
+                  invokeMethod();
+                }),
             icon: Icon(
               Icons.remove,
               size: widget.size.toDouble(),

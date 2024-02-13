@@ -8,12 +8,6 @@ import 'package:nylo_framework/nylo_framework.dart';
 
 class AuthController extends Controller {
   Future<void> login() async {
-    // Checking token
-    // final refreshToken = await NyStorage.read(StorageKey.refreshToken);
-    // if (refreshToken != null && !JwtDecoder.isExpired(refreshToken)) {
-    //   return;
-    // }
-
     // Parsing token
     final tokenRequest = await client.getTokenWithAuthCodeFlow(
         clientId: getEnv("AUTH_CLIENT_ID"));

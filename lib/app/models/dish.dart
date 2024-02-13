@@ -9,7 +9,7 @@ class Dish extends Model {
   double? proteins;
   double? fats;
   double? carbohydrates;
-  double? price;
+  int? price;
 
   Dish({
     this.id,

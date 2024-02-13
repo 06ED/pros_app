@@ -5,6 +5,7 @@ import 'feedback.dart';
 class Appeal extends Model {
   String? id;
   String? body;
+  int? number;
   Feedback? feedback;
 
   Appeal({
@@ -16,7 +17,10 @@ class Appeal extends Model {
   Appeal.fromJson(dynamic data) {
     id = data["id"];
     body = data["body"];
-    feedback = Feedback.fromJson(data["feedback"]);
+    number = data["number"];
+    feedback = data["feedback"] != null
+        ? Feedback.fromJson(data["feedback"])
+        : Feedback.empty();
   }
 
   @override
@@ -24,5 +28,6 @@ class Appeal extends Model {
         "feedback": feedback!.toJson(),
         "body": body,
         "id": id,
+        "number": number,
       };
 }

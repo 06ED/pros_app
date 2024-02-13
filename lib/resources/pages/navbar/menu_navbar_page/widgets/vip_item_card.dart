@@ -37,11 +37,12 @@ class _VipItemCardState extends State<VipItemCard> {
             ),
             child: CounterButton(
               1,
+              min: 0,
               onPressed: (count) {
                 widget.addInCart(count - prevCount, widget.dish);
                 prevCount = count;
               },
-              size: 30,
+              size: 20,
             ),
           );
         });
@@ -91,11 +92,14 @@ class _VipItemCardState extends State<VipItemCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.dish.title!,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                    SizedBox(
+                      width: 150,
+                      child: Text(
+                        widget.dish.title!,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                     Text("${widget.dish.price} Р"),
