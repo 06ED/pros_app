@@ -1,13 +1,10 @@
-import 'dart:developer';
-
-import '../controllers/controller.dart';
 import '../models/dish.dart';
 import '/app/models/order.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 import '../networking/orders_api_service.dart';
 
-class OrderController extends Controller {
+class OrderController extends NyController {
   Future<List<Order>?> getOrders() async =>
       await api<OrdersApiService>((request) => request.fetchOrders());
 

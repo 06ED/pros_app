@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '/app/controllers/account_controller.dart';
-import '/resources/pages/home_page.dart';
+import '../home_page/home_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-import '../../app/models/user.dart';
+import '../../../app/models/user.dart';
 
 class AccountPage extends NyStatefulWidget<AccountController> {
   static const path = '/account';

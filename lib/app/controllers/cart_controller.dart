@@ -1,43 +1,43 @@
 import 'dart:convert';
 
 import 'package:nylo_framework/nylo_framework.dart';
-import 'package:pros_app/app/controllers/controller.dart';
 import 'package:pros_app/app/models/dish.dart';
 import 'package:pros_app/app/networking/dishes_api_service.dart';
 
 import '/config/storage_keys.dart';
 
-class CartController extends Controller {
+class CartController extends NyController {
   Future<Map<Dish, int>> getCartItems() async {
     final map = <Dish, int>{};
-    for (String item in await NyStorage.readCollection(StorageKey.cart)) {
-      final decodedMap = jsonDecode(item) as Map<String, dynamic>;
-      map[await getDishById(decodedMap.keys.first)] =
-          decodedMap.values.first as int;
+    for (MapEntry<String, int> entry in (await _loadCart()).entries) {
+      map[await _getDishById(entry.key)] = entry.value;
     }
+
     return Map.fromEntries(map.entries.toList()
       ..sort((e1, e2) => e1.key.title!.compareTo(e2.key.title!)));
   }
 
-  Future<Dish> getDishById(String id) async =>
-      await api<DishesApiService>((request) => request.fetchDishById(id));
-
   Future<void> updateDishCount(Dish dish, int count) async {
-    await removeItem(dish);
     if (count <= 0) {
+      await removeItem(dish);
       return;
     }
 
-    await NyStorage.addToCollection(StorageKey.cart,
-        item: jsonEncode({dish.id!: count}));
+    final cart = await _loadCart();
+    cart[dish.id!] = count;
+    await NyStorage.store(StorageKey.cart, cart);
   }
 
   Future<void> removeItem(Dish dish) async {
-    final need = await NyStorage.readCollection(StorageKey.cart);
-    final needObject = need
-        .where((element) => jsonDecode(element).keys.first == dish.id)
-        .first;
-    await NyStorage.deleteFromCollection(need.indexOf(needObject),
-        key: StorageKey.cart);
+    final cart = await _loadCart();
+    cart.remove(dish.id);
+
+    await NyStorage.store(StorageKey.cart, cart);
   }
+
+  Future<Map<String, int>> _loadCart() async =>
+      jsonDecode(await NyStorage.read(StorageKey.cart)) as Map<String, int>;
+
+  Future<Dish> _getDishById(String id) async =>
+      await api<DishesApiService>((request) => request.fetchDishById(id));
 }

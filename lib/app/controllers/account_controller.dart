@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-import '../controllers/controller.dart';
+import 'package:nylo_framework/nylo_framework.dart';
 
-class AccountController extends Controller {
-  @override
-  construct(BuildContext context) {
-    super.construct(context);
-  }
-}
+class AccountController extends NyController {}

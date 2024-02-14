@@ -3,10 +3,10 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:flutter/material.dart';
 import '/app/models/user.dart';
 import '/app/controllers/home_controller.dart';
-import 'navbar/appeal_navbar_page.dart';
-import 'navbar/cart_navbar_page.dart';
-import 'navbar/menu_navbar_page/menu_navbar_page.dart';
-import 'navbar/orders_navbar_page.dart';
+import '../navbar/appeal_navbar_page/appeal_navbar_page.dart';
+import '../navbar/cart_navbar_page/cart_navbar_page.dart';
+import '../navbar/menu_navbar_page/menu_navbar_page.dart';
+import '../navbar/orders_navbar_page/orders_navbar_page.dart';
 
 class HomePage extends NyStatefulWidget<HomeController> {
   static const path = '/home';

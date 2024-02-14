@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-import 'controller.dart';
+import 'package:nylo_framework/nylo_framework.dart';
 
-class HomeController extends Controller {
-  @override
-  construct(BuildContext context) {
-    super.construct(context);
-  }
-}
+class HomeController extends NyController {}

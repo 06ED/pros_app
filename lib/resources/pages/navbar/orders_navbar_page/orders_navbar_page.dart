@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../app/models/dish.dart';
+import '../../../../app/models/dish.dart';
 import '/app/controllers/order_controller.dart';
 import '/app/models/order.dart';
 import '/config/design.dart';

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:pros_app/resources/widgets/counter_widget.dart';
 import '/app/models/dish.dart';
@@ -16,7 +14,6 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
   @override
   boot() async {
     cartItems = await widget.controller.getCartItems();
-    log(cartItems.values.toString());
   }
 
   @override

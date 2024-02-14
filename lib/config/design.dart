@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import '../resources/pages/pages.dart';
 import '../resources/widgets/dialogs/dialog_widget.dart';
-import '/resources/pages/account_page.dart';
-import '../app/models/user.dart';
 import '/resources/widgets/loader_widget.dart';
 import '/resources/widgets/logo_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';

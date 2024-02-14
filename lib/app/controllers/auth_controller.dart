@@ -1,12 +1,10 @@
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pros_app/app/models/user.dart';
 import 'package:pros_app/config/storage_keys.dart';
 
 import '../../bootstrap/helpers.dart';
-import '../controllers/controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-class AuthController extends Controller {
+class AuthController extends NyController {
   Future<void> login() async {
     // Parsing token
     final tokenRequest = await client.getTokenWithAuthCodeFlow(

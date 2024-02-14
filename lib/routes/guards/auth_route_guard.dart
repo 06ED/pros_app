@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/resources/pages/auth_page.dart';
+import '../../resources/pages/auth_page/auth_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 /*
