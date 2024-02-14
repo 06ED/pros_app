@@ -7,7 +7,6 @@ import 'package:pros_app/app/models/user.dart';
 import 'package:pros_app/resources/pages/payment_page/widgets/super_vip_order_widget.dart';
 import 'package:pros_app/resources/widgets/counter_widget.dart';
 import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
-import 'package:pros_app/resources/widgets/loader_widget.dart';
 import 'widgets/payment_app_bar.dart';
 import 'widgets/vip_order_widget.dart';
 
@@ -31,7 +30,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
       horizontal: 30,
     ),
     child: Text(
-      "Создать заказ",
+      "pages.payment.create_order".tr(),
       style: TextStyle(
         color: Colors.white,
         fontSize: 24,
@@ -57,12 +56,13 @@ class _PaymentPageState extends NyState<PaymentPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Expanded(
-        child: Wrap(
-          alignment: WrapAlignment.start,
-          runSpacing: 30,
+      body: Container(
+        margin: EdgeInsets.all(30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            PaymentAppBar(cost: _finalCost),
+            //PaymentAppBar(cost: _finalCost),
             Container(
               margin: EdgeInsets.symmetric(
                 vertical: 30,
@@ -77,7 +77,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
               child: Column(
                 children: [
                   Text(
-                    "Количество персон",
+                    "pages.payment.person_count".tr(),
                     style: TextStyle(
                       fontSize: 20,
                       color: Color.fromARGB(255, 30, 54, 133),
@@ -92,6 +92,9 @@ class _PaymentPageState extends NyState<PaymentPage> {
                 ],
               ),
             ),
+            user!.isVip
+                ? VipOrderWidget()
+                : SuperVipOrderWidget(controller: _foodPlaceController),
             TextButton(
               onPressed: () => _generateDialog(),
               style: ButtonStyle(
@@ -105,7 +108,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
                   horizontal: 30,
                 ),
                 child: Text(
-                  "Добавить желание",
+                  "pages.payment.add_wish".tr(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -113,9 +116,6 @@ class _PaymentPageState extends NyState<PaymentPage> {
                 ),
               ),
             ),
-            user!.isVip
-                ? VipOrderWidget()
-                : SuperVipOrderWidget(controller: _foodPlaceController),
             TextButton(
               onPressed: () async {
                 _submissionTime = await showTimePicker(
@@ -134,7 +134,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
                   horizontal: 30,
                 ),
                 child: Text(
-                  "Время подачи",
+                  "pages.payment.submission_time".tr(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -145,26 +145,34 @@ class _PaymentPageState extends NyState<PaymentPage> {
             TextButton(
               onPressed: () {
                 final nowTime = DateTime.now();
-                setState(() => _currentButtonWidget = Loader());
+                setState(() => _currentButtonWidget = Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 60,
+                  ),
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                ));
                 widget.controller
                     .createOrder(
-                      Order(
-                        dishes: _dishes,
-                        price: _finalCost,
-                        placeOfDelivery: _foodPlaceController.text,
-                        countOfPersons: _personCounter,
-                        wishes: _wishController.text,
-                        submissionTime: DateTime(
-                          nowTime.year,
-                          nowTime.month,
-                          nowTime.day,
-                          _submissionTime!.hour,
-                          _submissionTime!.minute,
-                        ),
-                      ),
-                    )
+                  Order(
+                    dishes: _dishes,
+                    price: _finalCost,
+                    placeOfDelivery: _foodPlaceController.text,
+                    countOfPersons: _personCounter,
+                    wishes: _wishController.text,
+                    submissionTime: DateTime(
+                      nowTime.year,
+                      nowTime.month,
+                      nowTime.day,
+                      _submissionTime!.hour,
+                      _submissionTime!.minute,
+                    ),
+                  ),
+                )
                     .then((value) => setState(() {
-
+        
                 }));
               },
               style: ButtonStyle(
@@ -177,7 +185,6 @@ class _PaymentPageState extends NyState<PaymentPage> {
                 child: _currentButtonWidget,
               ),
             ),
-            Padding(padding: EdgeInsets.all(40)),
           ],
         ),
       ),
@@ -187,7 +194,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
   _generateDialog() => showInputDialog(
         context: context,
         controller: _wishController,
-        labelText: "Добавить пожелание",
-        buttonText: "Создать",
+        labelText: "pages.payment.add_wish".tr(),
+        buttonText: "pages.payment.create_wish".tr(),
       );
 }

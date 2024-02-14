@@ -6,11 +6,12 @@ import 'package:pros_app/app/networking/dishes_api_service.dart';
 import 'package:pros_app/app/networking/menu_api_service.dart';
 import 'package:pros_app/config/storage_keys.dart';
 import 'package:nylo_framework/nylo_framework.dart';
+import 'package:pros_app/resources/utils/cart_mixin.dart';
 
 import '../models/category.dart';
 import '../networking/categories_api_service.dart';
 
-class MenuController extends NyController {
+class MenuController extends NyController with CartMixin {
   Future<List<Category>?> getCategories() async {
     final todayMenu =
         (await api<MenuApiService>((request) => request.fetchMenu())) as Menu;
@@ -24,8 +25,7 @@ class MenuController extends NyController {
       );
 
   Future<void> addInCart(Dish dish, int count) async {
-    final cartItems =
-        jsonDecode(await NyStorage.read(StorageKey.cart)) as Map<String, int>;
+    final cartItems = await cart;
 
     if (cartItems.containsKey(dish.id)) {
       cartItems[dish.id!] = cartItems[dish.id!]! + count;
@@ -33,6 +33,6 @@ class MenuController extends NyController {
       cartItems[dish.id!] = count;
     }
 
-    await NyStorage.store(StorageKey.cart, cartItems);
+    await NyStorage.store(StorageKey.cart, jsonEncode(cartItems));
   }
 }

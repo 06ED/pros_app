@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nylo_framework/nylo_framework.dart';
 
 class VipOrderWidget extends StatefulWidget {
   const VipOrderWidget({super.key});
@@ -14,8 +15,8 @@ class _VipOrderWidgetState extends State<VipOrderWidget> {
   Widget build(BuildContext context) {
     return ToggleButtons(
       children: [
-        _buildText("Забрать", _selected == 0),
-        _buildText("Накрыть в зале", _selected == 1),
+        _buildText("pages.payment.take_type.yourself".tr(), _selected == 0),
+        _buildText("pages.payment.take_type.area".tr(), _selected == 1),
       ],
       isSelected: [_selected == 0, _selected == 1],
       fillColor: Color.fromARGB(255, 30, 54, 133),

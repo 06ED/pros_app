@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nylo_framework/nylo_framework.dart';
 import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
 
 class SuperVipOrderWidget extends StatefulWidget {
@@ -21,8 +22,10 @@ class _SuperVipOrderWidgetState extends State<SuperVipOrderWidget> {
       children: [
         ToggleButtons(
           children: [
-            _buildText("Наличными", _selectedPayment == 0),
-            _buildText("Картой", _selectedPayment == 1),
+            _buildText(
+                "pages.payment.payment_type.cache".tr(), _selectedPayment == 0),
+            _buildText(
+                "pages.payment.payment_type.card".tr(), _selectedPayment == 1),
           ],
           isSelected: [_selectedPayment == 0, _selectedPayment == 1],
           fillColor: Color.fromARGB(255, 30, 54, 133),
@@ -46,7 +49,7 @@ class _SuperVipOrderWidgetState extends State<SuperVipOrderWidget> {
               horizontal: 30,
             ),
             child: Text(
-              "Место для еды",
+              "pages.payment.eat_place".tr(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -72,7 +75,7 @@ class _SuperVipOrderWidgetState extends State<SuperVipOrderWidget> {
   void _generateDialog() => showInputDialog(
         context: context,
         controller: widget.controller,
-        labelText: "Куда принести еду",
-        buttonText: "Добавить",
+        labelText: "pages.payment.where_eat".tr(),
+        buttonText: "pages.payment.add_eat".tr(),
       );
 }

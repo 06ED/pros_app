@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:pros_app/app/models/appeal.dart';
+import 'package:pros_app/resources/pages/appeal_page/widgets/appeal_content_widget.dart';
 import 'package:pros_app/resources/widgets/loader_widget.dart';
 
 class AppealPage extends NyStatefulWidget {
@@ -52,7 +53,7 @@ class _AppealPageState extends NyState<AppealPage> {
             padding: EdgeInsets.all(10),
           ),
           _current == 0
-              ? _buildContent(appeal.body!)
+              ? AppealContent(defaultText: appeal.body!, onEdit: (newText) {})
               : appeal.feedback!.empty
                   ? Container(
                     margin: EdgeInsets.symmetric(
@@ -62,6 +63,7 @@ class _AppealPageState extends NyState<AppealPage> {
                         child: Column(
                           children: [
                             Loader(),
+                            Padding(padding: EdgeInsets.all(10)),
                             Text(
                               "На рассмотрении",
                               style: TextStyle(
@@ -93,16 +95,15 @@ class _AppealPageState extends NyState<AppealPage> {
   Widget _buildContent(String data) => Expanded(
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(
-              color: Color.fromARGB(255, 30, 54, 133),
-            ),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(30),
+            color: Color.fromARGB(255, 241, 241, 241),
           ),
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.all(30),
           padding: EdgeInsets.all(10),
           child: SingleChildScrollView(
             child: Text(
               data,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
                 color: Color.fromARGB(255, 30, 54, 133),

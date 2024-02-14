@@ -1,3 +1,4 @@
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pros_app/app/models/user.dart';
 import 'package:pros_app/config/storage_keys.dart';
 
@@ -17,7 +18,7 @@ class AuthController extends NyController {
         tokenRequest.refreshToken ?? StorageKey.refreshToken);
 
     // Setup user
-    final Map decodedToken = getTokenPayload(tokenRequest.accessToken!);
+    final Map decodedToken = JwtDecoder.decode(tokenRequest.accessToken!);
 
     final user = User(
       id: decodedToken["sid"],

@@ -25,7 +25,7 @@ class Appeal extends Model {
 
   @override
   toJson() => {
-        "feedback": feedback!.toJson(),
+        "feedback": feedback != null ? feedback!.toJson() : null,
         "body": body,
         "id": id,
         "number": number,

@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:pros_app/app/models/dish.dart';
 import 'package:pros_app/app/networking/dishes_api_service.dart';
+import 'package:pros_app/resources/utils/cart_mixin.dart';
 
 import '/config/storage_keys.dart';
 
-class CartController extends NyController {
+class CartController extends NyController with CartMixin {
   Future<Map<Dish, int>> getCartItems() async {
     final map = <Dish, int>{};
-    for (MapEntry<String, int> entry in (await _loadCart()).entries) {
+    for (MapEntry<String, dynamic> entry in (await cart).entries) {
       map[await _getDishById(entry.key)] = entry.value;
     }
 
@@ -23,20 +24,17 @@ class CartController extends NyController {
       return;
     }
 
-    final cart = await _loadCart();
-    cart[dish.id!] = count;
-    await NyStorage.store(StorageKey.cart, cart);
+    final cartItems = await cart;
+    cartItems[dish.id!] = count;
+    await NyStorage.store(StorageKey.cart, jsonEncode(cartItems));
   }
 
   Future<void> removeItem(Dish dish) async {
-    final cart = await _loadCart();
-    cart.remove(dish.id);
+    final cartItems = await cart;
+    cartItems.remove(dish.id);
 
-    await NyStorage.store(StorageKey.cart, cart);
+    await NyStorage.store(StorageKey.cart, jsonEncode(cartItems));
   }
-
-  Future<Map<String, int>> _loadCart() async =>
-      jsonDecode(await NyStorage.read(StorageKey.cart)) as Map<String, int>;
 
   Future<Dish> _getDishById(String id) async =>
       await api<DishesApiService>((request) => request.fetchDishById(id));

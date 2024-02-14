@@ -30,11 +30,10 @@ class _VipItemCardState extends State<VipItemCard> {
           _animatedWidget = Container(
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Color.fromARGB(255, 30, 54, 133),
-              )
-            ),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Color.fromARGB(255, 30, 54, 133),
+                )),
             child: CounterButton(
               1,
               min: 0,
@@ -102,7 +101,24 @@ class _VipItemCardState extends State<VipItemCard> {
                         ),
                       ),
                     ),
-                    Text("${widget.dish.price} Р"),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.only(
+                        top: 5,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Color.fromARGB(255, 30, 54, 133),
+                        ),
+                      ),
+                      child: Text(
+                        "${widget.dish.price}₽",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 30, 54, 133),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 AnimatedSwitcher(
@@ -110,7 +126,7 @@ class _VipItemCardState extends State<VipItemCard> {
                     scale: animation,
                     child: child,
                   ),
-                  duration: Duration(milliseconds: 300),
+                  duration: Duration(milliseconds: 190),
                   child: _animatedWidget,
                 )
               ],

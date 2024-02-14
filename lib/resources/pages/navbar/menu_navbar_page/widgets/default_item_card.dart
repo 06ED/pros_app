@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '/bootstrap/helpers.dart';
 import '/app/models/dish.dart';
 
 class DefaultItemCard extends StatelessWidget {
@@ -33,7 +32,7 @@ class DefaultItemCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: 150,
+                  width: 220,
                   child: Text(
                     dish.title!,
                     style: TextStyle(
@@ -42,10 +41,20 @@ class DefaultItemCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  dish.price.toString() + "P",
-                  style: TextStyle(
-                    fontSize: 18,
+                Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Color.fromARGB(255, 30, 54, 133),
+                    ),
+                  ),
+                  child: Text(
+                    "${dish.price}₽",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 30, 54, 133),
+                    ),
                   ),
                 ),
               ],

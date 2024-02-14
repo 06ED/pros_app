@@ -12,60 +12,61 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
   late Map<Dish, int> cartItems;
 
   @override
-  boot() async {
-    cartItems = await widget.controller.getCartItems();
-  }
+  boot() async => cartItems = await widget.controller.getCartItems();
 
   @override
   Widget build(BuildContext context) {
     return afterLoad(
-      child: () => Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              child: Text(
-                "headers.cart".tr(),
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+      child: () =>
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  child: Text(
+                    "headers.cart".tr(),
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  margin: EdgeInsets.only(bottom: 10),
                 ),
-              ),
-              margin: EdgeInsets.only(bottom: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: cartItems.length,
+                    itemBuilder: (context, index) =>
+                        _buildItem(
+                          cartItems.keys.toList()[index],
+                          cartItems.values.toList()[index],
+                        ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => routeTo("/payment", data: cartItems),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(
+                      Color.fromARGB(255, 30, 54, 133),
+                    ),
+                  ),
+                  child: Text(
+                    "Заказать",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: cartItems.length,
-                itemBuilder: (context, index) => _buildItem(
-                  cartItems.keys.toList()[index],
-                  cartItems.values.toList()[index],
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () => routeTo("/payment", data: cartItems),
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color.fromARGB(255, 30, 54, 133),
-                ),
-              ),
-              child: Text(
-                "Заказать",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 
-  Widget _buildItem(Dish dish, int count) => Container(
+  Widget _buildItem(Dish dish, int count) =>
+      Container(
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 241, 241, 241),
@@ -113,8 +114,13 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
                       count,
                       size: 20,
                       onPressed: (count) async {
-                        widget.controller.updateDishCount(dish, count);
-                        reboot();
+                        await widget.controller.updateDishCount(dish, count);
+                        cartItems = await widget.controller.getCartItems();
+
+                        setState(() {});
+                        if (count <= 0) {
+                          reboot();
+                        }
                       },
                     ),
                   ),

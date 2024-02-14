@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pros_app/bootstrap/helpers.dart';
-import '../../app/networking/dio/interceptors/bearer_auth_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../config/storage_keys.dart';
 import '/config/decoders.dart';
@@ -26,7 +25,6 @@ class ApiService extends NyApiService {
 
   @override
   final interceptors = {
-    BearerAuthInterceptor: BearerAuthInterceptor(),
     if (getEnv('APP_DEBUG') == true) PrettyDioLogger: PrettyDioLogger(),
   };
 

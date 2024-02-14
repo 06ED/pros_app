@@ -28,7 +28,7 @@ class PaymentAppBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Создане заказа",
+                  "headers.payment".tr(),
                   style: TextStyle(
                     fontSize: 33,
                     color: Colors.white,
