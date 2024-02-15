@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pros_app/resources/pages/home_page/home_page.dart';
 import '/app/controllers/auth_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
@@ -49,6 +50,6 @@ class _AuthPageState extends NyState<AuthPage> {
 
   Future<void> _loginRoute() async {
     await sleep(3);
-    routeTo("/home", navigationType: NavigationType.pushReplace);
+    routeTo(HomePage.path, navigationType: NavigationType.pushReplace);
   }
 }

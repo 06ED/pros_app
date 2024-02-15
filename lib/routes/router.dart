@@ -57,4 +57,9 @@ appRouter() => nyRoutes((router) {
           AuthRouteGuard(),
         ],
       );
+      router.route(
+        SuccessOrderPage.path,
+        (context) => SuccessOrderPage(),
+        transition: PageTransitionType.fade,
+      );
     });

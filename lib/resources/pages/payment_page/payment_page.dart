@@ -4,6 +4,7 @@ import 'package:pros_app/app/controllers/payment_controller.dart';
 import 'package:pros_app/app/models/dish.dart';
 import 'package:pros_app/app/models/order.dart';
 import 'package:pros_app/app/models/user.dart';
+import 'package:pros_app/resources/pages/pages.dart';
 import 'package:pros_app/resources/pages/payment_page/widgets/super_vip_order_widget.dart';
 import 'package:pros_app/resources/widgets/counter_widget.dart';
 import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
@@ -19,7 +20,9 @@ class PaymentPage extends NyStatefulWidget<PaymentController> {
 class _PaymentPageState extends NyState<PaymentPage> {
   final TextEditingController _foodPlaceController = TextEditingController();
   final TextEditingController _wishController = TextEditingController();
+
   late TimeOfDay? _submissionTime;
+
   int _personCounter = 0;
   int _finalCost = 0;
   List<Dish> _dishes = [];
@@ -56,6 +59,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: PaymentAppBar(cost: _finalCost) as AppBar,
       body: Container(
         margin: EdgeInsets.all(30),
         child: Column(
@@ -146,34 +150,37 @@ class _PaymentPageState extends NyState<PaymentPage> {
               onPressed: () {
                 final nowTime = DateTime.now();
                 setState(() => _currentButtonWidget = Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 60,
-                  ),
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                ));
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 60,
+                      ),
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    ));
                 widget.controller
                     .createOrder(
-                  Order(
-                    dishes: _dishes,
-                    price: _finalCost,
-                    placeOfDelivery: _foodPlaceController.text,
-                    countOfPersons: _personCounter,
-                    wishes: _wishController.text,
-                    submissionTime: DateTime(
-                      nowTime.year,
-                      nowTime.month,
-                      nowTime.day,
-                      _submissionTime!.hour,
-                      _submissionTime!.minute,
-                    ),
-                  ),
-                )
+                      Order(
+                        dishes: _dishes,
+                        price: _finalCost,
+                        placeOfDelivery: _foodPlaceController.text,
+                        countOfPersons: _personCounter,
+                        wishes: _wishController.text,
+                        submissionTime: DateTime(
+                          nowTime.year,
+                          nowTime.month,
+                          nowTime.day,
+                          _submissionTime!.hour,
+                          _submissionTime!.minute,
+                        ),
+                      ),
+                    )
                     .then((value) => setState(() {
-        
-                }));
+                          routeTo(
+                            SuccessOrderPage.path,
+                            navigationType: NavigationType.pushReplace,
+                          );
+                        }));
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(
