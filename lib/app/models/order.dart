@@ -7,6 +7,7 @@ class Order extends Model {
   int? price;
   String? placeOfDelivery;
   int? countOfPersons;
+  int? number;
   String? wishes;
   String? status;
   List<Dish>? dishes;
@@ -18,6 +19,7 @@ class Order extends Model {
     this.price,
     this.status,
     this.dishes,
+    this.number,
     this.placeOfDelivery,
     this.countOfPersons,
     this.wishes,
@@ -35,6 +37,7 @@ class Order extends Model {
     dishes = (data["dishes"] as List).map((e) => Dish.fromJson(e)).toList();
     submissionTime = DateTime.tryParse(data["submissionTime"]);
     paymentMethod = data["paymentMethod"];
+    number = data["number"];
   }
 
   @override
@@ -44,6 +47,7 @@ class Order extends Model {
         "countOfPersons": countOfPersons,
         "wishes": wishes,
         "status": "Готовится",
+        "number": number,
         "dishIds": dishes?.map((e) => e.id).toList(),
         "submissionTime": submissionTime!.toIso8601String(),
         "paymentMethod": paymentMethod,

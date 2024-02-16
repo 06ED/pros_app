@@ -59,7 +59,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PaymentAppBar(cost: _finalCost) as AppBar,
+      appBar: PaymentAppBar(cost: _finalCost),
       body: Container(
         margin: EdgeInsets.all(30),
         child: Column(

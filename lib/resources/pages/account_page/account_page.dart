@@ -15,6 +15,7 @@ class _AccountPageState extends NyState<AccountPage> {
   @override
   Widget build(BuildContext context) {
     final self = Auth.user<User>()!;
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.topCenter,

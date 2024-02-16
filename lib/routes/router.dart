@@ -62,4 +62,9 @@ appRouter() => nyRoutes((router) {
         (context) => SuccessOrderPage(),
         transition: PageTransitionType.fade,
       );
+      router.route(
+        OrderPage.path,
+        (context) => OrderPage(),
+        transition: PageTransitionType.fade,
+      );
     });

@@ -7,6 +7,7 @@ void showInputDialog({
   required TextEditingController controller,
   required String labelText,
   required String buttonText,
+  String? hintText,
   VoidCallback? onPress,
 }) =>
     getDialog(
@@ -36,6 +37,7 @@ void showInputDialog({
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey, width: 2),
                 ),
+                hintText: hintText,
               ),
               style: TextStyle(
                 color: Color.fromARGB(255, 30, 54, 133),
