@@ -4,8 +4,13 @@ import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
 
 class SuperVipOrderWidget extends StatefulWidget {
   final TextEditingController controller;
+  final Function(String method) onChangedPayment;
 
-  const SuperVipOrderWidget({super.key, required this.controller});
+  const SuperVipOrderWidget({
+    super.key,
+    required this.controller,
+    required this.onChangedPayment,
+  });
 
   @override
   State<SuperVipOrderWidget> createState() => _SuperVipOrderWidgetState();
@@ -34,6 +39,11 @@ class _SuperVipOrderWidgetState extends State<SuperVipOrderWidget> {
           selectedBorderColor: Color.fromARGB(255, 30, 54, 133),
           onPressed: (index) => setState(() {
             _selectedPayment = index;
+            widget.onChangedPayment(
+              _selectedPayment == 0
+                  ? "pages.payment.payment_type.cache".tr()
+                  : "pages.payment.payment_type.card".tr(),
+            );
           }),
         ),
         TextButton(

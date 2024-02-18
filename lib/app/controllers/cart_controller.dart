@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:pros_app/app/models/dish.dart';
 import 'package:pros_app/app/networking/dishes_api_service.dart';
-import 'package:pros_app/resources/utils/cart_mixin.dart';
 
+import '../utils/cart_mixin.dart';
 import '/config/storage_keys.dart';
 
 class CartController extends NyController with CartMixin {

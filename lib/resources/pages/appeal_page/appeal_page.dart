@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
+import 'package:pros_app/app/controllers/appeal_controller.dart';
 import 'package:pros_app/app/models/appeal.dart';
 import 'package:pros_app/resources/pages/appeal_page/widgets/appeal_content_widget.dart';
 import 'package:pros_app/resources/widgets/loader_widget.dart';
 
-class AppealPage extends NyStatefulWidget {
+class AppealPage extends NyStatefulWidget<AppealController> {
   static const path = "/appeal";
 
   AppealPage() : super(path, child: _AppealPageState());
@@ -15,7 +16,8 @@ class _AppealPageState extends NyState<AppealPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Appeal appeal = widget.data()["appeal"];
+    Appeal appeal = widget.data()["appeal"];
+    VoidCallback onDelete = widget.data()["on_delete"];
 
     return Scaffold(
       appBar: AppBar(
@@ -53,13 +55,21 @@ class _AppealPageState extends NyState<AppealPage> {
             padding: EdgeInsets.all(10),
           ),
           _current == 0
-              ? AppealContent(defaultText: appeal.body!, onEdit: (newText) {})
+              ? AppealContent(
+                  defaultText: appeal.body!,
+                  onEdit: (newText) async {},
+                  onDelete: () async {
+                    await widget.controller.deleteAppeal(appeal);
+                    Navigator.pop(context);
+                    onDelete.call();
+                  },
+                )
               : appeal.feedback!.empty
                   ? Container(
-                    margin: EdgeInsets.symmetric(
-                      vertical: 150,
-                    ),
-                    child: Center(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 150,
+                      ),
+                      child: Center(
                         child: Column(
                           children: [
                             Loader(),
@@ -71,10 +81,34 @@ class _AppealPageState extends NyState<AppealPage> {
                                 color: Color.fromARGB(255, 30, 54, 133),
                               ),
                             ),
+                            Padding(padding: EdgeInsets.all(10)),
+                            TextButton(
+                              onPressed: () async => appeal =
+                                  await widget.controller.getAppeal(appeal.id!),
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                  Color.fromARGB(255, 30, 54, 133),
+                                ),
+                              ),
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                  vertical: 10,
+                                  horizontal: 30,
+                                ),
+                                child: Text(
+                                  "Обновить",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                  )
+                    )
                   : _buildContent(appeal.feedback!.body!)
         ],
       ),

@@ -30,7 +30,7 @@ class Dish extends Model {
     proteins = data["proteins"];
     fats = data["fats"];
     carbohydrates = data["carbohydrates"];
-    price = (data["price"] as double).toInt();
+    price = data["price"];
   }
 
   Image get image => Image.network(

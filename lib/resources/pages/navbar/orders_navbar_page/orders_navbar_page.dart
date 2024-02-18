@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../app/models/dish.dart';
 import '/app/controllers/order_controller.dart';
 import '/app/models/order.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -8,11 +9,15 @@ class OrdersNavBarPage extends NyStatefulWidget<OrderController> {
 }
 
 class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
-  late List<Order> orderItems;
+  late List<Order> orders;
+  late Map<Order, Map<Dish, int>> dishes;
 
   @override
   boot() async {
-    orderItems = await widget.controller.getOrders() ?? [];
+    orders = await widget.controller.getOrders() ?? [];
+    dishes = await widget.controller.getDishesWithCount(
+      await widget.controller.getOrders() ?? [],
+    );
   }
 
   @override
@@ -35,8 +40,8 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: orderItems.length,
-                itemBuilder: (context, index) => _buildItem(orderItems[index]),
+                itemCount: orders.length,
+                itemBuilder: (context, index) => _buildItem(orders[index]),
               ),
             ),
           ],
@@ -47,7 +52,16 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
 
   Widget _buildItem(Order order) => InkWell(
         splashColor: Colors.transparent,
-        onTap: () => routeTo("/order"),
+        onTap: () {
+          Map<Dish, int>? dish;
+          for (MapEntry<Order, dynamic> entry in dishes.entries) {
+            if (entry.key.id == order.id) {
+              dish = entry.value;
+              break;
+            }
+          }
+          routeTo("/order", data: {"order": order, "dishes": dish});
+        },
         child: Container(
           decoration: BoxDecoration(
             color: Color.fromARGB(255, 241, 241, 241),
@@ -59,7 +73,7 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _getOrderName(orderItems.indexOf(order) + 1),
+              _getOrderName(order.number!),
               Text(
                 "pages.orders.status".tr() + ": ${order.status!}",
               )

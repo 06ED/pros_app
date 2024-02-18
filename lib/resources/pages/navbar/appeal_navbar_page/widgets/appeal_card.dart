@@ -4,8 +4,9 @@ import 'package:pros_app/app/models/appeal.dart';
 
 class AppealCard extends StatelessWidget {
   final Appeal appeal;
+  final VoidCallback onDelete;
 
-  const AppealCard({super.key, required this.appeal});
+  const AppealCard({super.key, required this.appeal, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class AppealCard extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () => routeTo("/appeal", data: {
         "appeal": appeal,
+        "on_delete": onDelete,
       }),
       child: Container(
         margin: EdgeInsets.all(10),

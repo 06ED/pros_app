@@ -17,4 +17,11 @@ class AppealApiService extends ApiService {
           data: {"body": body},
         ),
       );
+
+  Future<Null> deleteAppeal(Appeal appeal) async => await network(
+        request: (request) => request.delete("/${appeal.id}"),
+      );
+
+  Future<Appeal?> fetchAppeal(String id) async =>
+      await network(request: (request) => request.get("/$id"));
 }

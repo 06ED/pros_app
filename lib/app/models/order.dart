@@ -47,9 +47,8 @@ class Order extends Model {
         "countOfPersons": countOfPersons,
         "wishes": wishes,
         "status": "Готовится",
-        "number": number,
         "dishIds": dishes?.map((e) => e.id).toList(),
-        "submissionTime": submissionTime!.toIso8601String(),
+        "submissionTime": "${submissionTime!.toIso8601String()}+00:00",
         "paymentMethod": paymentMethod,
       };
 }

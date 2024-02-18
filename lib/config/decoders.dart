@@ -1,3 +1,4 @@
+import 'package:pros_app/app/controllers/appeal_controller.dart';
 import 'package:pros_app/app/controllers/cart_controller.dart';
 import 'package:pros_app/app/controllers/payment_controller.dart';
 import 'package:pros_app/app/models/appeal.dart';
@@ -11,7 +12,7 @@ import 'package:pros_app/app/networking/payment_api_service.dart';
 import '/app/models/order.dart';
 import '/app/models/category.dart';
 import '/app/controllers/account_controller.dart';
-import '/app/controllers/appeal_controller.dart';
+import '/app/controllers/appeals_controller.dart';
 import '/app/controllers/auth_controller.dart';
 import '/app/controllers/menu_controller.dart';
 import '/app/controllers/order_controller.dart';
@@ -87,6 +88,7 @@ final Map<Type, NyApiService> apiDecoders = {
 */
 final Map<Type, BaseController Function()> controllers = {
   HomeController: () => HomeController(),
+  AppealsController: () => AppealsController(),
   AppealController: () => AppealController(),
   MenuController: () => MenuController(),
   OrderController: () => OrderController(),

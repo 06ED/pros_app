@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:pros_app/app/controllers/order_controller.dart';
-import 'package:pros_app/resources/pages/order_page/widgets/order_table_widget.dart';
+
+import 'widgets/order_app_bar.dart';
+import 'widgets/order_table_widget.dart';
 
 import '/app/models/dish.dart';
 import '/app/models/order.dart';
@@ -14,46 +16,62 @@ class OrderPage extends NyStatefulWidget<OrderController> {
 
 class _OrderPageState extends NyState<OrderPage> {
   late Order order;
-  late Map<Order, Map<Dish, int>> dishes;
+  late Map<Dish, int> dishes;
 
   @override
-  boot() async {
+  boot() {
     order = widget.data()["order"];
-    dishes = await widget.controller.getDishesWithCount(
-      await widget.controller.getOrders() ?? [],
-    );
+    dishes = widget.data()["dishes"];
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget view(BuildContext context) {
     final rows = <TableRow>[];
-    dishes[order]!.forEach((key, value) {
+    dishes.forEach((key, value) {
       rows.add(_buildTableRow(key, value));
     });
 
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Text("Цена: ${order.price}"),
-            Text("Статус: ${order.status!}"),
-            Padding(padding: EdgeInsets.all(20)),
-            Center(
-              child: Column(
-                children: [
-                  Text(
-                    "Состав заказа",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+      appBar: OrderAppBar(order: order),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Color.fromARGB(255, 30, 54, 133),
                   ),
-                  OrderTableWidget(rows: rows),
-                ],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  order.status!,
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Color.fromARGB(255, 30, 54, 133),
+                  ),
+                ),
               ),
-            ),
-          ],
+              Padding(padding: EdgeInsets.all(20)),
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      "Состав заказа",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.all(10)),
+                    OrderTableWidget(rows: rows),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -72,7 +90,7 @@ class _OrderPageState extends NyState<OrderPage> {
             text,
             style: TextStyle(
               color: Colors.black,
-              fontSize: 14,
+              fontSize: 18,
             ),
           ),
         ),

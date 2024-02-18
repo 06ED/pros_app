@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pros_app/resources/pages/navbar/appeal_navbar_page/widgets/appeal_card.dart';
 import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
-import '/app/controllers/appeal_controller.dart';
+import '/app/controllers/appeals_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 import '/app/models/appeal.dart';
 
-class AppealNavBarPage extends NyStatefulWidget<AppealController> {
+class AppealNavBarPage extends NyStatefulWidget<AppealsController> {
   AppealNavBarPage() : super('/appeals', child: _AppealNavBarPageState());
 }
 
@@ -44,7 +44,10 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
                 child: ListView.builder(
                   itemCount: appeals.length,
                   itemBuilder: (context, index) => Container(
-                    child: AppealCard(appeal: appeals[index]),
+                    child: AppealCard(
+                      appeal: appeals[index],
+                      onDelete: () => reboot(),
+                    ),
                   ),
                 ),
               ),
@@ -55,7 +58,6 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
           backgroundColor: Color.fromARGB(255, 30, 54, 133),
           onPressed: () => _generateDialog(() async {
             await widget.controller.createAppeal(_controller.text);
-            Navigator.pop(context);
             _controller.clear();
             reboot();
           }),
@@ -75,5 +77,6 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
         labelText: "pages.appeals.create".tr(),
         buttonText: "pages.appeals.send".tr(),
         hintText: "pages.appeals.text".tr(),
+        onPress: onPress,
       );
 }

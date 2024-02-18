@@ -6,10 +6,10 @@ import 'package:pros_app/app/networking/dishes_api_service.dart';
 import 'package:pros_app/app/networking/menu_api_service.dart';
 import 'package:pros_app/config/storage_keys.dart';
 import 'package:nylo_framework/nylo_framework.dart';
-import 'package:pros_app/resources/utils/cart_mixin.dart';
 
 import '../models/category.dart';
 import '../networking/categories_api_service.dart';
+import '../utils/cart_mixin.dart';
 
 class MenuController extends NyController with CartMixin {
   Future<List<Category>?> getCategories() async {

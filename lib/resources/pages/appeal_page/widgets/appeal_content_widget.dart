@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 
 class AppealContent extends StatefulWidget {
   final Function(String newData) onEdit;
+  final VoidCallback onDelete;
   final String defaultText;
 
-  AppealContent({super.key, required this.defaultText, required this.onEdit});
+  AppealContent({
+    super.key,
+    required this.defaultText,
+    required this.onEdit,
+    required this.onDelete,
+  });
 
   @override
   State<AppealContent> createState() => _AppealContentPageState();
@@ -40,8 +46,8 @@ class _AppealContentPageState extends State<AppealContent> {
               maxLines: 18,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Color.fromARGB(255, 30, 54, 133), width: 2),
+                  borderSide: BorderSide(
+                      color: Color.fromARGB(255, 30, 54, 133), width: 2),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey, width: 2),
@@ -56,7 +62,13 @@ class _AppealContentPageState extends State<AppealContent> {
               readOnly: !_active,
             ),
             TextButton(
-              onPressed: () => setState(() => _active = true),
+              onPressed: () => setState(() {
+                if (!_active) {
+                  _active = true;
+                  return;
+                }
+                widget.onEdit.call(_controller.text);
+              }),
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(
                   Color.fromARGB(255, 30, 54, 133),
@@ -68,7 +80,7 @@ class _AppealContentPageState extends State<AppealContent> {
                   horizontal: 30,
                 ),
                 child: Text(
-                  "Редактировать",
+                  _active ? "Сохранить" : "Редактировать",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -78,7 +90,7 @@ class _AppealContentPageState extends State<AppealContent> {
             ),
             Padding(padding: EdgeInsets.all(10)),
             TextButton(
-              onPressed: () => setState(() => _active = true),
+              onPressed: widget.onDelete,
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(
                   Color.fromARGB(255, 30, 54, 133),

@@ -19,12 +19,12 @@ ThemeData lightTheme(ColorStyles color) {
 
   return ThemeData(
     useMaterial3: true,
-    primaryColor: color.primaryContent,
-    primaryColorLight: color.primaryAccent,
+    primaryColor: Colors.white,
+    primaryColorLight: Colors.white,
     focusColor: color.primaryContent,
     scaffoldBackgroundColor: color.background,
     hintColor: color.primaryAccent,
-    dividerTheme: DividerThemeData(color: Colors.grey[100]),
+    dividerTheme: DividerThemeData(color: Colors.white),
     appBarTheme: AppBarTheme(
       backgroundColor: color.appBarBackground,
       titleTextStyle:
@@ -44,6 +44,11 @@ ThemeData lightTheme(ColorStyles color) {
       style: TextButton.styleFrom(
           foregroundColor: color.buttonPrimaryContent,
           backgroundColor: color.buttonBackground),
+    ),
+    timePickerTheme: TimePickerThemeData(
+      backgroundColor: Colors.white,
+      hourMinuteColor: Color.fromARGB(255, 30, 54, 133),
+      hourMinuteTextColor: Colors.white,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: color.bottomTabBarBackground,

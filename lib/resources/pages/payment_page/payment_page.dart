@@ -26,6 +26,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
   int _personCounter = 0;
   int _finalCost = 0;
   List<Dish> _dishes = [];
+  String paymentMethod = "Наличными";
 
   Widget _currentButtonWidget = Container(
     margin: EdgeInsets.symmetric(
@@ -97,8 +98,10 @@ class _PaymentPageState extends NyState<PaymentPage> {
               ),
             ),
             user!.isVip
-                ? VipOrderWidget()
-                : SuperVipOrderWidget(controller: _foodPlaceController),
+                ? VipOrderWidget() : SuperVipOrderWidget(
+              controller: _foodPlaceController,
+              onChangedPayment: (method) => paymentMethod = method,
+            ),
             TextButton(
               onPressed: () => _generateDialog(),
               style: ButtonStyle(
@@ -149,38 +152,41 @@ class _PaymentPageState extends NyState<PaymentPage> {
             TextButton(
               onPressed: () {
                 final nowTime = DateTime.now();
-                setState(() => _currentButtonWidget = Container(
-                      margin: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 60,
-                      ),
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                      ),
-                    ));
+                setState(() =>
+                _currentButtonWidget = Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 60,
+                  ),
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                ));
                 widget.controller
                     .createOrder(
-                      Order(
-                        dishes: _dishes,
-                        price: _finalCost,
-                        placeOfDelivery: _foodPlaceController.text,
-                        countOfPersons: _personCounter,
-                        wishes: _wishController.text,
-                        submissionTime: DateTime(
-                          nowTime.year,
-                          nowTime.month,
-                          nowTime.day,
-                          _submissionTime!.hour,
-                          _submissionTime!.minute,
-                        ),
-                      ),
-                    )
-                    .then((value) => setState(() {
-                          routeTo(
-                            SuccessOrderPage.path,
-                            navigationType: NavigationType.pushReplace,
-                          );
-                        }));
+                  Order(
+                    dishes: _dishes,
+                    price: _finalCost,
+                    placeOfDelivery: _foodPlaceController.text,
+                    countOfPersons: _personCounter,
+                    wishes: _wishController.text,
+                    paymentMethod: paymentMethod,
+                    submissionTime: DateTime(
+                      nowTime.year,
+                      nowTime.month,
+                      nowTime.day,
+                      _submissionTime!.hour,
+                      _submissionTime!.minute,
+                    ),
+                  ),
+                )
+                    .then((value) =>
+                    setState(() {
+                      routeTo(
+                        SuccessOrderPage.path,
+                        navigationType: NavigationType.pushReplace,
+                      );
+                    }));
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(
@@ -198,7 +204,8 @@ class _PaymentPageState extends NyState<PaymentPage> {
     );
   }
 
-  _generateDialog() => showInputDialog(
+  _generateDialog() =>
+      showInputDialog(
         context: context,
         controller: _wishController,
         labelText: "pages.payment.add_wish".tr(),

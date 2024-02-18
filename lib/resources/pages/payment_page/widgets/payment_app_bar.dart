@@ -10,14 +10,16 @@ class PaymentAppBar extends AppBar {
           title: Text(
             "headers.payment".tr(),
             style: TextStyle(
-              fontSize: 33,
+              fontSize: 23,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
+          backgroundColor: Color.fromARGB(255, 30, 54, 133),
           actions: [
             Container(
               padding: EdgeInsets.all(7),
+              margin: EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(

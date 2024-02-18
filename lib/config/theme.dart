@@ -1,6 +1,5 @@
 import 'package:nylo_framework/nylo_framework.dart';
 
-import '/resources/themes/dark_theme.dart';
 import '/resources/themes/light_theme.dart';
 import '/resources/themes/styles/color_styles.dart';
 import '/resources/themes/styles/light_theme_colors.dart';
@@ -26,7 +25,7 @@ final List<BaseThemeConfig<ColorStyles>> appThemes = [
   BaseThemeConfig<ColorStyles>(
     id: getEnv('DARK_THEME_ID'),
     description: "Dark theme",
-    theme: darkTheme,
+    theme: lightTheme,
     colors: LightThemeColors(),
   ),
 ];
