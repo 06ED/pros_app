@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
+import 'package:pros_app/resources/widgets/refresh_indicator_widget.dart';
 import 'widgets/default_item_card.dart';
 import 'widgets/vip_item_card.dart';
 import '/app/models/user.dart';
@@ -36,50 +37,53 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
   @override
   Widget build(BuildContext context) {
     return afterLoad(
-      child: () => Container(
-        margin: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: Text(
-                "headers.menu".tr(),
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+      child: () => PullToRefreshWidget(
+        onRefresh: () => reboot(),
+        child: Container(
+          margin: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: Text(
+                  "headers.menu".tr(),
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                margin: EdgeInsets.only(bottom: 10),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: 10,
+                ),
+                child: SearchBar(
+                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                    vertical: 5,
+                    horizontal: 20,
+                  )),
+                  leading: Icon(
+                    Icons.search,
+                    color: Color.fromARGB(255, 30, 54, 133),
+                  ),
+                  textStyle: MaterialStateProperty.all(TextStyle(
+                    color: Color.fromARGB(255, 30, 54, 133),
+                  )),
+                  side: MaterialStateProperty.all(BorderSide(
+                    color: Color.fromARGB(255, 30, 54, 133),
+                  )),
+                  surfaceTintColor: MaterialStateProperty.all(Colors.white),
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                  onChanged: (value) {
+                    filter = value;
+                    reboot();
+                  },
                 ),
               ),
-              margin: EdgeInsets.only(bottom: 10),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                vertical: 10,
-              ),
-              child: SearchBar(
-                padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                  vertical: 5,
-                  horizontal: 20,
-                )),
-                leading: Icon(
-                  Icons.search,
-                  color: Color.fromARGB(255, 30, 54, 133),
-                ),
-                textStyle: MaterialStateProperty.all(TextStyle(
-                  color: Color.fromARGB(255, 30, 54, 133),
-                )),
-                side: MaterialStateProperty.all(BorderSide(
-                  color: Color.fromARGB(255, 30, 54, 133),
-                )),
-                surfaceTintColor: MaterialStateProperty.all(Colors.white),
-                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                onChanged: (value) {
-                  filter = value;
-                  reboot();
-                },
-              ),
-            ),
-            _buildList,
-          ],
+              _buildList,
+            ],
+          ),
         ),
       ),
     );
@@ -99,10 +103,7 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
                   fontSize: 20,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                child: _buildDishes(categories.values.toList()[index]),
-              ),
+              _buildDishes(categories.values.toList()[index]),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pros_app/resources/widgets/refresh_indicator_widget.dart';
 import '../../../../app/models/dish.dart';
 import '/app/controllers/order_controller.dart';
 import '/app/models/order.dart';
@@ -23,28 +24,31 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
   @override
   Widget build(BuildContext context) {
     return afterLoad(
-      child: () => Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: Text(
-                "headers.orders".tr(),
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+      child: () => PullToRefreshWidget(
+        onRefresh: () => reboot(),
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: Text(
+                  "headers.orders".tr(),
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                margin: EdgeInsets.only(bottom: 10),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: orders.length,
+                  itemBuilder: (context, index) => _buildItem(orders[index]),
                 ),
               ),
-              margin: EdgeInsets.only(bottom: 10),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: orders.length,
-                itemBuilder: (context, index) => _buildItem(orders[index]),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

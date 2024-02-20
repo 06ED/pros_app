@@ -34,9 +34,7 @@ class Dish extends Model {
   }
 
   Image get image => Image.network(
-        "https://android-obzor.com/wp-content/uploads/2022/03"
-        "/1627241072_7-funart-pro-p-kot-s-ogromnimi-glazami"
-        "-zhivotnie-krasivo-9.jpg",
+        "https://i.artfile.ru/3000x2000_811359_%5Bwww.ArtFile.ru%5D.jpg",
         width: double.infinity,
         height: 200,
         fit: BoxFit.fitWidth,
