@@ -4,7 +4,7 @@ import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
 
 class SuperVipOrderWidget extends StatefulWidget {
   final TextEditingController controller;
-  final Function(String method) onChangedPayment;
+  final Function(PaymentMethod method) onChangedPayment;
 
   const SuperVipOrderWidget({
     super.key,
@@ -17,7 +17,7 @@ class SuperVipOrderWidget extends StatefulWidget {
 }
 
 class _SuperVipOrderWidgetState extends State<SuperVipOrderWidget> {
-  int _selectedPayment = 0;
+  var _selectedPayment = PaymentMethod.cache;
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +28,21 @@ class _SuperVipOrderWidgetState extends State<SuperVipOrderWidget> {
         ToggleButtons(
           children: [
             _buildText(
-                "pages.payment.payment_type.cache".tr(), _selectedPayment == 0),
+                "pages.payment.payment_type.cache".tr(), _selectedPayment == PaymentMethod.cache),
             _buildText(
-                "pages.payment.payment_type.card".tr(), _selectedPayment == 1),
+                "pages.payment.payment_type.card".tr(), _selectedPayment == PaymentMethod.card),
           ],
-          isSelected: [_selectedPayment == 0, _selectedPayment == 1],
+          isSelected: [
+            _selectedPayment == PaymentMethod.cache,
+            _selectedPayment == PaymentMethod.card
+          ],
           fillColor: Color.fromARGB(255, 30, 54, 133),
           borderRadius: BorderRadius.circular(10),
           borderColor: Color.fromARGB(255, 30, 54, 133),
           selectedBorderColor: Color.fromARGB(255, 30, 54, 133),
           onPressed: (index) => setState(() {
-            _selectedPayment = index;
-            widget.onChangedPayment(
-              _selectedPayment == 0
-                  ? "pages.payment.payment_type.cache".tr()
-                  : "pages.payment.payment_type.card".tr(),
-            );
+            _selectedPayment = PaymentMethod.values[index];
+            widget.onChangedPayment(_selectedPayment);
           }),
         ),
         TextButton(
@@ -89,3 +88,5 @@ class _SuperVipOrderWidgetState extends State<SuperVipOrderWidget> {
         buttonText: "pages.payment.add_eat".tr(),
       );
 }
+
+enum PaymentMethod { cache, card }

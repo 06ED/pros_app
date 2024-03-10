@@ -36,7 +36,15 @@ class _HomePageState extends NyState<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: appBar,
-      body: _getByIndex(_index),
+      body: NySwitch(
+        widgets: [
+          MenuNavBarPage(),
+          AppealNavBarPage(),
+          OrdersNavBarPage(),
+          CartNavBarPage(),
+        ],
+        indexSelected: _index,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         selectedIconTheme: IconThemeData(
@@ -60,12 +68,4 @@ class _HomePageState extends NyState<HomePage> {
       );
 
   ImageIcon _getIcon(String path) => ImageIcon(AssetImage(getImageAsset(path)));
-
-  StatefulWidget _getByIndex(int index) => switch (index) {
-        0 => MenuNavBarPage(),
-        1 => AppealNavBarPage(),
-        2 => OrdersNavBarPage(),
-        3 => CartNavBarPage(),
-        _ => MenuNavBarPage(),
-      };
 }
