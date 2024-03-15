@@ -67,6 +67,8 @@ class _AppealContentPageState extends State<AppealContent> {
                   _active = true;
                   return;
                 }
+
+                _active = false;
                 widget.onEdit.call(_controller.text);
               }),
               style: ButtonStyle(

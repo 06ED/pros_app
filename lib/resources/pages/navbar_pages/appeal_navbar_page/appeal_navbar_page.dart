@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pros_app/resources/pages/navbar/appeal_navbar_page/widgets/appeal_card.dart';
+import 'widgets/appeal_card.dart';
 import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
 import '/app/controllers/appeals_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';

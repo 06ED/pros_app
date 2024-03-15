@@ -1,4 +1,4 @@
-export 'navbar/navbar_pages.dart';
+export 'navbar_pages/navbar_pages.dart';
 
 export 'account_page/account_page.dart' show AccountPage;
 export 'appeal_page/appeal_page.dart' show AppealPage;

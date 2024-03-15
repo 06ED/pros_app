@@ -1,19 +1,14 @@
 import 'dart:developer';
 
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:nylo_framework/nylo_framework.dart';
+
+import '../../../../bootstrap/helpers.dart';
+import '../../../../config/storage_keys.dart';
 
 class BearerAuthInterceptor extends Interceptor {
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log(response.data.toString());
-    handler.next(response);
-  }
-
-  @override
   void onError(DioException dioException, ErrorInterceptorHandler handler) {
     handler.next(dioException);
-    log(dioException.response!.requestOptions.method);
-    log(dioException.message!.toString());
-    log(dioException.response!.realUri.toString());
   }
 }

@@ -24,4 +24,14 @@ class AppealApiService extends ApiService {
 
   Future<Appeal?> fetchAppeal(String id) async =>
       await network(request: (request) => request.get("/$id"));
+
+  Future<Null> updateAppeal(Appeal appeal) async => await network(
+        request: (request) => request.put(
+          "/data",
+          data: {
+            "id": appeal.id,
+            "body": appeal.body,
+          },
+        ),
+      );
 }

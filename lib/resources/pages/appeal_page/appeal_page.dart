@@ -14,11 +14,17 @@ class AppealPage extends NyStatefulWidget<AppealController> {
 class _AppealPageState extends NyState<AppealPage> {
   int _current = 0;
 
-  @override
-  Widget build(BuildContext context) {
-    Appeal appeal = widget.data()["appeal"];
-    VoidCallback onDelete = widget.data()["on_delete"];
+  late Appeal appeal;
+  late VoidCallback onDelete;
 
+  @override
+  boot() {
+    appeal = widget.data()["appeal"];
+    onDelete = widget.data()["on_delete"];
+  }
+
+  @override
+  Widget view(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -57,7 +63,10 @@ class _AppealPageState extends NyState<AppealPage> {
           _current == 0
               ? AppealContent(
                   defaultText: appeal.body!,
-                  onEdit: (newText) async {},
+                  onEdit: (newText) async {
+                    appeal.body = newText;
+                    await widget.controller.updateAppeal(appeal);
+                  },
                   onDelete: () async {
                     await widget.controller.deleteAppeal(appeal);
                     Navigator.pop(context);
@@ -83,8 +92,12 @@ class _AppealPageState extends NyState<AppealPage> {
                             ),
                             Padding(padding: EdgeInsets.all(10)),
                             TextButton(
-                              onPressed: () async => appeal =
-                                  await widget.controller.getAppeal(appeal.id!),
+                              onPressed: () async =>
+                                  widget.controller.getAppeal(appeal.id!).then(
+                                        (value) => setState(
+                                          () => appeal = value,
+                                        ),
+                                      ),
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStatePropertyAll<Color>(

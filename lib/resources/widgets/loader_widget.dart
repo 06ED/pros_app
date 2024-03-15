@@ -10,9 +10,11 @@ class Loader extends StatelessWidget {
       case TargetPlatform.android:
         return Container(
           color: Colors.white,
-          child: Center(child: CircularProgressIndicator(
-            color: const Color.fromARGB(255, 30, 54, 133),
-          )),
+          child: Center(
+            child: CircularProgressIndicator(
+              color: const Color.fromARGB(255, 30, 54, 133),
+            ),
+          ),
         );
       case TargetPlatform.iOS:
         return Center(child: CupertinoActivityIndicator());

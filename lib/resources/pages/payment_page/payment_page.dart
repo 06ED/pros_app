@@ -146,17 +146,6 @@ class _PaymentPageState extends NyState<PaymentPage> {
             TextButton(
               onPressed: () {
                 final nowTime = DateTime.now();
-                setState(
-                  () => _currentButtonWidget = Container(
-                    margin: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 60,
-                    ),
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                  ),
-                );
 
                 // Validation
                 if (_submissionTime == null) {
@@ -188,13 +177,22 @@ class _PaymentPageState extends NyState<PaymentPage> {
                       ),
                     )
                     .then(
-                      (value) => setState(
-                        () => routeTo(
-                          SuccessOrderPage.path,
-                          navigationType: NavigationType.pushReplace,
-                        ),
+                      (value) => routeTo(
+                        SuccessOrderPage.path,
+                        navigationType: NavigationType.pushReplace,
                       ),
                     );
+                setState(
+                      () => _currentButtonWidget = Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 60,
+                    ),
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  ),
+                );
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(

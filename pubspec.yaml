@@ -1,9 +1,3 @@
-# Nylo - Micro-framework for Flutter.
-#
-# Website: https://nylo.dev
-# Official repository: https://github.com/nylo-core/nylo
-# Author: Anthony Gordon <https://github.com/agordn52>
-
 name: pros_app
 description: A new Nylo Flutter application.
 
