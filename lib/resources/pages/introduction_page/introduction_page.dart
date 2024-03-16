@@ -44,11 +44,16 @@ class _IntroductionPageState extends NyState<IntroductionPage> {
               navigationType: NavigationType.pushReplace,
             ),
             style: TextButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 30, 54, 133),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 60,
-                  vertical: 15,
-                )),
+              backgroundColor: Color.fromARGB(255, 30, 54, 133),
+              padding: EdgeInsets.symmetric(
+                horizontal: 60,
+                vertical: 15,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              )
+            ),
+
             child: Text(
               "Войти",
               style: TextStyle(
