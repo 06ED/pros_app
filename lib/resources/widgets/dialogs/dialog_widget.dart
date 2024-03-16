@@ -20,7 +20,7 @@ class DialogWidget extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 500,
+            height: 450,
             padding: EdgeInsets.all(15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

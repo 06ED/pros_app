@@ -8,8 +8,7 @@ void main() async {
   Nylo nylo = await Nylo.init(setup: Boot.nylo, setupFinished: Boot.finished);
 
   runApp(
-    AppBuild
-      (
+    AppBuild(
       navigatorKey: NyNavigator.instance.router.navigatorKey,
       onGenerateRoute: nylo.router!.generator(),
       debugShowCheckedModeBanner: false,

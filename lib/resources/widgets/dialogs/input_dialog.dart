@@ -23,6 +23,7 @@ void showInputDialog({
       child: Container(
         padding: EdgeInsets.all(20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextField(
               controller: controller,
@@ -47,7 +48,6 @@ void showInputDialog({
               autofocus: true,
             ),
             Container(
-              margin: EdgeInsets.all(10),
               child: TextButton(
                 onPressed: () {
                   if (onPress != null) {
@@ -55,22 +55,18 @@ void showInputDialog({
                   }
                   Navigator.pop(context);
                 },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll<Color>(
-                    Color.fromARGB(255, 30, 54, 133),
-                  ),
-                ),
-                child: Container(
-                  margin: EdgeInsets.symmetric(
+                style: TextButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 30, 54, 133),
+                  padding: EdgeInsets.symmetric(
                     vertical: 10,
                     horizontal: 30,
                   ),
-                  child: Text(
-                    buttonText,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
+                ),
+                child: Text(
+                  buttonText,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
                   ),
                 ),
               ),
