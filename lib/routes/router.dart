@@ -17,8 +17,6 @@ appRouter() => nyRoutes((router) {
       router.route(
         AuthPage.path,
         (context) => AuthPage(),
-        initialRoute: true,
-        authPage: true,
       );
       router.route(
         HomePage.path,
@@ -27,11 +25,6 @@ appRouter() => nyRoutes((router) {
         routeGuards: [
           AuthRouteGuard(),
         ],
-      );
-      router.route(
-        PaymentPage.path,
-        (context) => PaymentPage(),
-        transition: PageTransitionType.fade,
       );
       router.route(
         AccountPage.path,
@@ -66,5 +59,11 @@ appRouter() => nyRoutes((router) {
         OrderPage.path,
         (context) => OrderPage(),
         transition: PageTransitionType.fade,
+      );
+      router.route(
+        IntroductionPage.path,
+        (context) => IntroductionPage(),
+        initialRoute: true,
+        authPage: true,
       );
     });

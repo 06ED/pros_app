@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../resources/pages/auth_page/auth_page.dart';
+import 'package:pros_app/resources/pages/introduction_page/introduction_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 /*
@@ -20,6 +20,6 @@ class AuthRouteGuard extends NyRouteGuard {
 
   @override
   redirectTo(BuildContext? context, NyArgument? data) async {
-    await routeTo(AuthPage.path);
+    await routeTo(IntroductionPage.path);
   }
 }

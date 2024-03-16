@@ -7,3 +7,4 @@ export 'auth_page/auth_page.dart' show AuthPage;
 export 'order_page/order_page.dart' show OrderPage;
 export 'payment_page/payment_page.dart' show PaymentPage;
 export 'success_order_page/success_order_page.dart' show SuccessOrderPage;
+export 'introduction_page/introduction_page.dart' show IntroductionPage;

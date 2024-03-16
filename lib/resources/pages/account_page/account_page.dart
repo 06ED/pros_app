@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pros_app/resources/pages/introduction_page/introduction_page.dart';
 import '/app/controllers/account_controller.dart';
 import '../home_page/home_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
@@ -78,7 +79,13 @@ class _AccountPageState extends NyState<AccountPage> {
                 ),
                 Padding(padding: EdgeInsets.all(20)),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await widget.controller.logout();
+                    routeTo(
+                      IntroductionPage.path,
+                      navigationType: NavigationType.pushAndForgetAll,
+                    );
+                  },
                   autofocus: true,
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(

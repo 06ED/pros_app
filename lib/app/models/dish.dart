@@ -9,6 +9,7 @@ class Dish extends Model {
   double? proteins;
   double? fats;
   double? carbohydrates;
+  int? weight;
   int? price;
 
   Dish({
@@ -20,6 +21,7 @@ class Dish extends Model {
     this.fats,
     this.carbohydrates,
     this.price,
+    this.weight,
   });
 
   Dish.fromJson(dynamic data) {
@@ -31,6 +33,7 @@ class Dish extends Model {
     fats = data["fats"];
     carbohydrates = data["carbohydrates"];
     price = data["price"];
+    weight = data["weight"];
   }
 
   Image get image => Image.network(
@@ -50,5 +53,6 @@ class Dish extends Model {
         "fats": fats,
         "carbohydrates": carbohydrates,
         "price": price,
+        "weight": weight,
       };
 }

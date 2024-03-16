@@ -8,6 +8,7 @@ import 'package:pros_app/app/networking/api_service.dart';
 import 'package:pros_app/app/networking/dishes_api_service.dart';
 import 'package:pros_app/app/networking/menu_api_service.dart';
 import 'package:pros_app/app/networking/payment_api_service.dart';
+import 'package:pros_app/app/networking/user_api_service.dart';
 
 import '/app/models/order.dart';
 import '/app/models/category.dart';
@@ -72,6 +73,7 @@ final Map<Type, NyApiService> apiDecoders = {
   DishesApiService: DishesApiService(),
   MenuApiService: MenuApiService(),
   PaymentApiService: PaymentApiService(),
+  UserApiService: UserApiService(),
   ApiService: ApiService(),
 };
 
