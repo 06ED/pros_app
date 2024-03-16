@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pros_app/app/networking/dio/interceptors/bearer_auth_interceptor.dart';
@@ -46,7 +44,7 @@ class ApiService extends NyApiService {
   @override
   refreshToken(Dio dio) async {
     final token = await client.refreshToken(
-      getEnv("TOKEN_URL"),
+      await NyStorage.read(StorageKey.refreshToken),
       clientId: getEnv("AUTH_CLIENT_ID"),
     );
 
