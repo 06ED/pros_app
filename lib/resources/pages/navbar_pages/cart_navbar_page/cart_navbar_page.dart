@@ -97,20 +97,6 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.all(7),
-                        child: Text(
-                          "${dish.price}P",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 30, 54, 133),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: Color.fromARGB(255, 30, 54, 133),
-                            )),
-                      ),
                     ],
                   ),
                   Container(
@@ -132,6 +118,30 @@ class _CartNavBarPageState extends NyState<CartNavBarPage> {
                           reboot();
                         }
                       },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              endIndent: 10,
+              indent: 10,
+              color: Color.fromARGB(255, 102, 102, 102),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                top: 5,
+                left: 15,
+                bottom: 15,
+              ),
+              alignment: Alignment.bottomLeft,
+              child: Column(
+                children: [
+                  Text(
+                    "${dish.weight} гр\n${dish.price}₽",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color.fromARGB(255, 102, 102, 102),
                     ),
                   ),
                 ],

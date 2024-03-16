@@ -18,6 +18,7 @@ class DefaultItemCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.only(
@@ -27,39 +28,43 @@ class DefaultItemCard extends StatelessWidget {
             child: dish.image,
           ),
           Container(
-            padding: EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            margin: EdgeInsets.only(
+              top: 15,
+              left: 15,
+              bottom: 5,
+            ),
+            child: Text(
+              dish.title!,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ),
+          Divider(
+            endIndent: 10,
+            indent: 10,
+            color: Color.fromARGB(255, 102, 102, 102),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 5,
+              left: 15,
+              bottom: 15,
+            ),
+            alignment: Alignment.bottomLeft,
+            child: Column(
               children: [
-                SizedBox(
-                  width: 220,
-                  child: Text(
-                    dish.title!,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Color.fromARGB(255, 30, 54, 133),
-                    ),
-                  ),
-                  child: Text(
-                    "${dish.price}₽",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color.fromARGB(255, 30, 54, 133),
-                    ),
+                Text(
+                  "${dish.weight} гр\n${dish.price}₽",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 102, 102, 102),
                   ),
                 ),
               ],
             ),
-          ),
+          )
         ],
       ),
     );

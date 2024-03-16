@@ -53,6 +53,9 @@ class _PaymentPageState extends NyState<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     final user = Auth.user<User>();
+    if (user!.isVip) {
+      _foodPlaceController.text = "pages.payment.take_type.yourself".tr();
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -92,8 +95,14 @@ class _PaymentPageState extends NyState<PaymentPage> {
                 ],
               ),
             ),
-            user!.isVip
-                ? VipOrderWidget()
+            user.isVip
+                ? VipOrderWidget(
+                    onChange: (index) {
+                      _foodPlaceController.text = index == 0
+                          ? "pages.payment.take_type.yourself".tr()
+                          : "pages.payment.take_type.area".tr();
+                    },
+                  )
                 : SuperVipOrderWidget(
                     controller: _foodPlaceController,
                     onChangedPayment: (method) => paymentMethod = method,
@@ -183,7 +192,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
                       ),
                     );
                 setState(
-                      () => _currentButtonWidget = Container(
+                  () => _currentButtonWidget = Container(
                     margin: EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 60,

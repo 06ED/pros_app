@@ -84,7 +84,11 @@ class _VipItemCardState extends State<VipItemCard> {
             child: widget.dish.image,
           ),
           Container(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.only(
+              top: 10,
+              left: 15,
+              right: 15,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -101,24 +105,6 @@ class _VipItemCardState extends State<VipItemCard> {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      margin: EdgeInsets.only(
-                        top: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Color.fromARGB(255, 30, 54, 133),
-                        ),
-                      ),
-                      child: Text(
-                        "${widget.dish.price}₽",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 30, 54, 133),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
                 AnimatedSwitcher(
@@ -128,7 +114,31 @@ class _VipItemCardState extends State<VipItemCard> {
                   ),
                   duration: Duration(milliseconds: 190),
                   child: _animatedWidget,
-                )
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            endIndent: 10,
+            indent: 10,
+            color: Color.fromARGB(255, 102, 102, 102),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 5,
+              left: 15,
+              bottom: 15,
+            ),
+            alignment: Alignment.bottomLeft,
+            child: Column(
+              children: [
+                Text(
+                  "${widget.dish.weight} гр\n${widget.dish.price}₽",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 102, 102, 102),
+                  ),
+                ),
               ],
             ),
           ),

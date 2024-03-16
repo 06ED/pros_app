@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../widgets/refresh_indicator_widget.dart';
 import 'widgets/appeal_card.dart';
 import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
 import '/app/controllers/appeals_controller.dart';
@@ -20,51 +21,54 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
   @override
   Widget build(BuildContext context) {
     return afterLoad(
-      child: () => Scaffold(
-        body: Container(
-          margin: EdgeInsets.only(
-            right: 20,
-            top: 20,
-            left: 20,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                child: Text(
-                  "headers.appeals".tr(),
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+      child: () => PullToRefreshWidget(
+        onRefresh: () => reboot(),
+        child: Scaffold(
+          body: Container(
+            margin: EdgeInsets.only(
+              right: 20,
+              top: 20,
+              left: 20,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: Text(
+                    "headers.appeals".tr(),
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  margin: EdgeInsets.only(bottom: 10),
                 ),
-                margin: EdgeInsets.only(bottom: 10),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: appeals.length,
-                  itemBuilder: (context, index) => Container(
-                    child: AppealCard(
-                      appeal: appeals[index],
-                      onDelete: () => reboot(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: appeals.length,
+                    itemBuilder: (context, index) => Container(
+                      child: AppealCard(
+                        appeal: appeals[index],
+                        onDelete: () => reboot(),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 30, 54, 133),
-          onPressed: () => _generateDialog(() async {
-            await widget.controller.createAppeal(_controller.text);
-            _controller.clear();
-            reboot();
-          }),
-          child: Icon(
-            Icons.add,
-            size: 30,
-            color: Colors.white,
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Color.fromARGB(255, 30, 54, 133),
+            onPressed: () => _generateDialog(() async {
+              await widget.controller.createAppeal(_controller.text);
+              _controller.clear();
+              reboot();
+            }),
+            child: Icon(
+              Icons.add,
+              size: 30,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
