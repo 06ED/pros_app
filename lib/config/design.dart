@@ -44,7 +44,7 @@ AppBar get appBar => AppBar(
 void getDialog({
   required context,
   required Widget title,
-  Widget? child,
+  required Widget child,
 }) =>
     showDialog(
       context: context,

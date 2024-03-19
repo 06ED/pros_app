@@ -23,13 +23,13 @@ void showInputDialog({
       child: Container(
         padding: EdgeInsets.all(20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: controller,
               keyboardType: TextInputType.multiline,
-              maxLines: 11,
-              minLines: 11,
+              maxLines: 7,
+              minLines: 7,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -48,6 +48,9 @@ void showInputDialog({
               autofocus: true,
             ),
             Container(
+              margin: EdgeInsets.only(
+                top: 10,
+              ),
               child: TextButton(
                 onPressed: () {
                   if (onPress != null) {
@@ -55,18 +58,22 @@ void showInputDialog({
                   }
                   Navigator.pop(context);
                 },
-                style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 30, 54, 133),
-                  padding: EdgeInsets.symmetric(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll<Color>(
+                    Color.fromARGB(255, 30, 54, 133),
+                  ),
+                ),
+                child: Container(
+                  margin: EdgeInsets.symmetric(
                     vertical: 10,
                     horizontal: 30,
                   ),
-                ),
-                child: Text(
-                  buttonText,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
+                  child: Text(
+                    buttonText,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),

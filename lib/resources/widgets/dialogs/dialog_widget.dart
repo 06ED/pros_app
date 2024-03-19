@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 
 class DialogWidget extends StatelessWidget {
-  static const _borderRadius = 10.0;
-
-  final Widget? child;
+  final Widget child;
   final Widget title;
 
-  DialogWidget({super.key, required this.title, this.child});
+  DialogWidget({super.key, required this.title, required this.child});
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(_borderRadius),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Stack(
         alignment: Alignment.center,
         children: [
           Container(
             width: double.infinity,
-            height: 450,
+            height: 400,
             padding: EdgeInsets.all(15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,9 +37,7 @@ class DialogWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                SingleChildScrollView(
-                  child: child,
-                ),
+                child,
               ],
             ),
           )
