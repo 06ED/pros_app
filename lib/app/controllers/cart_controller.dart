@@ -11,7 +11,9 @@ class CartController extends NyController with CartMixin {
   Future<Map<Dish, int>> getCartItems() async {
     final map = <Dish, int>{};
     for (MapEntry<String, dynamic> entry in (await cart).entries) {
-      map[await _getDishById(entry.key)] = entry.value;
+      try {
+        map[await _getDishById(entry.key)] = entry.value;
+      } catch (e) {}
     }
 
     return Map.fromEntries(map.entries.toList()
