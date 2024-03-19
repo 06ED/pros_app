@@ -29,7 +29,6 @@ dependency_overrides:
   flutter_secure_storage: any
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.13
 
   flutter_test:

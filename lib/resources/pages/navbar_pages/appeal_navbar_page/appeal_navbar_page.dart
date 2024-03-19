@@ -60,6 +60,10 @@ class _AppealNavBarPageState extends NyState<AppealNavBarPage> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color.fromARGB(255, 30, 54, 133),
             onPressed: () => _generateDialog(() async {
+              if (_controller.text.trim().isEmpty) {
+                return;
+              }
+
               await widget.controller.createAppeal(_controller.text);
               _controller.clear();
               reboot();
