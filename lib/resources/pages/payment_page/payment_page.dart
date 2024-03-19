@@ -56,7 +56,8 @@ class _PaymentPageState extends NyState<PaymentPage> {
   @override
   init() {
     final controller = KeyboardVisibilityController();
-    controller.onChange.listen((visible) => setState(() => _visible = !visible));
+    controller.onChange
+        .listen((visible) => setState(() => _visible = !visible));
   }
 
   @override
@@ -115,6 +116,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
                       },
                     )
                   : SuperVipOrderWidget(
+                      context: context,
                       controller: _foodPlaceController,
                       onChangedPayment: (method) => paymentMethod = method,
                     ),
@@ -186,7 +188,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
                           countOfPersons: _personCounter,
                           wishes: _wishController.text,
                           paymentMethod: "pages.payment.payment_type."
-                              "${paymentMethod.toString()}",
+                              "${paymentMethod.name}",
                           submissionTime: DateTime(
                             nowTime.year,
                             nowTime.month,

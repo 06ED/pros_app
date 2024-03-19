@@ -26,30 +26,42 @@ class _OrdersNavBarPageState extends NyState<OrdersNavBarPage> {
     return afterLoad(
       child: () => PullToRefreshWidget(
         onRefresh: () => reboot(),
-        child: Container(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
+        child: orders.isEmpty
+            ? Center(
                 child: Text(
-                  "headers.orders".tr(),
+                  "Нет заказов",
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 30, 54, 133),
                   ),
                 ),
-                margin: EdgeInsets.only(bottom: 10),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: orders.length,
-                  itemBuilder: (context, index) => _buildItem(orders[index]),
+              )
+            : Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Text(
+                        "headers.orders".tr(),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      margin: EdgeInsets.only(bottom: 10),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: orders.length,
+                        itemBuilder: (context, index) =>
+                            _buildItem(orders[index]),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
       ),
     );
   }

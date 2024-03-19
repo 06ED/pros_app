@@ -3,11 +3,13 @@ import 'package:nylo_framework/nylo_framework.dart';
 import 'package:pros_app/resources/widgets/dialogs/input_dialog.dart';
 
 class SuperVipOrderWidget extends StatefulWidget {
+  final BuildContext context;
   final TextEditingController controller;
   final Function(PaymentMethod method) onChangedPayment;
 
   const SuperVipOrderWidget({
     super.key,
+    required this.context,
     required this.controller,
     required this.onChangedPayment,
   });
@@ -82,7 +84,7 @@ class _SuperVipOrderWidgetState extends State<SuperVipOrderWidget> {
       );
 
   void _generateDialog() => showInputDialog(
-        context: context,
+        context: widget.context,
         controller: widget.controller,
         labelText: "pages.payment.where_eat".tr(),
         buttonText: "pages.payment.add_eat".tr(),
