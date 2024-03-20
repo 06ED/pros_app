@@ -100,7 +100,7 @@ class _VipItemCardState extends State<VipItemCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 150,
+                      width: 145,
                       child: Text(
                         widget.dish.title!,
                         style: TextStyle(
