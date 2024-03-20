@@ -9,7 +9,7 @@ class Dish extends Model {
   double? proteins;
   double? fats;
   double? carbohydrates;
-  int? weight;
+  String? weight;
   int? price;
 
   Dish({

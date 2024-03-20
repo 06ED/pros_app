@@ -188,7 +188,7 @@ class _PaymentPageState extends NyState<PaymentPage> {
                           countOfPersons: _personCounter,
                           wishes: _wishController.text,
                           paymentMethod: "pages.payment.payment_type."
-                              "${paymentMethod.name}",
+                              "${paymentMethod.name}".tr(),
                           submissionTime: DateTime(
                             nowTime.year,
                             nowTime.month,
