@@ -28,7 +28,11 @@ class _VipItemCardState extends State<VipItemCard> {
         int prevCount = 1;
         setState(() {
           _animatedWidget = Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.only(
+              right: 10,
+              top: 10,
+              bottom: 10,
+            ),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
