@@ -86,8 +86,8 @@ class _VipItemCardState extends State<VipItemCard> {
           Container(
             padding: EdgeInsets.only(
               top: 10,
-              left: 15,
-              right: 15,
+              left: 10,
+              right: 10,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

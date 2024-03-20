@@ -15,11 +15,10 @@ class AuthRouteGuard extends NyRouteGuard {
   AuthRouteGuard();
 
   @override
-  Future<bool> canOpen(BuildContext? context, NyArgument? data) async =>
+  canOpen(BuildContext? context, NyArgument? data) async =>
       await Auth.loggedIn();
 
   @override
-  redirectTo(BuildContext? context, NyArgument? data) async {
-    await routeTo(IntroductionPage.path);
-  }
+  redirectTo(BuildContext? context, NyArgument? data) async =>
+      await routeTo(IntroductionPage.path);
 }

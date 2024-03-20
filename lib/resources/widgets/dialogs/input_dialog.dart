@@ -28,8 +28,8 @@ void showInputDialog({
             TextField(
               controller: controller,
               keyboardType: TextInputType.multiline,
-              maxLines: 7,
-              minLines: 7,
+              maxLines: 6,
+              minLines: 6,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
