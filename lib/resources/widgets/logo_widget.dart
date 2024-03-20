@@ -13,7 +13,7 @@ class Logo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image.asset(
-          "android_logo.png",
+          "logos/android_logo.png",
           height: height ?? 45,
           width: width ?? 45,
         ).localAsset(),
