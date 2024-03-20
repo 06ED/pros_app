@@ -29,10 +29,16 @@ dependency_overrides:
   flutter_secure_storage: any
 
 dev_dependencies:
-  flutter_native_splash: ^2.3.13
+  flutter_launcher_icons: ^0.13.1
 
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  image_path: 'public/assets/images/logo.png'
+  remove_alpha_ios: true
+  android: true
+  ios: true
 
 flutter:
 
