@@ -21,7 +21,7 @@
       "status": "Статус",
       "status_mode": {
         "ready": "Готов",
-        "in_process": "Готовится"
+        "in_process": "Готовим"
       }
     },
     "appeals": {
