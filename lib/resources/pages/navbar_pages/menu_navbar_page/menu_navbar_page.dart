@@ -73,6 +73,9 @@ class _MenuNavBarPageState extends NyState<MenuNavBarPage> {
                   side: MaterialStateProperty.all(BorderSide(
                     color: Color.fromARGB(255, 30, 54, 133),
                   )),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  )),
                   surfaceTintColor: MaterialStateProperty.all(Colors.white),
                   shadowColor: MaterialStateProperty.all(Colors.transparent),
                   onChanged: (value) {
