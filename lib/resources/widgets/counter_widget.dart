@@ -13,7 +13,7 @@ class CounterButton extends StatefulWidget {
     this.onPressed,
     this.size = 50,
     this.min = -100,
-    this.max = 100,
+    this.max = 30,
   });
 
   @override
@@ -37,6 +37,11 @@ class _CounterButtonState extends State<CounterButton> {
         children: [
           _buildIcon(
             onPressed: () => setState(() {
+              if (widget.max <= _counter) {
+                _counter = widget.max;
+                return;
+              }
+
               _counter++;
               invokeMethod();
             }),
@@ -56,10 +61,6 @@ class _CounterButtonState extends State<CounterButton> {
             onPressed: () => setState(() {
               if (widget.min >= _counter) {
                 _counter = widget.min;
-                return;
-              }
-              if (widget.max <= _counter) {
-                _counter = widget.max;
                 return;
               }
 
