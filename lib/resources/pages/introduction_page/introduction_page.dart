@@ -27,7 +27,7 @@ class _IntroductionPageState extends NyState<IntroductionPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            "logo.png",
+            "android_logo.png",
             width: double.infinity,
           ).localAsset(),
           Text(

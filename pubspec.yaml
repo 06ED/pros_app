@@ -35,7 +35,9 @@ dev_dependencies:
     sdk: flutter
 
 flutter_launcher_icons:
-  image_path: 'public/assets/images/logo.png'
+  image_path_android: 'public/assets/images/logos/android_logo.png'
+  image_path_ios: 'public/assets/images/logos/ios_logo.png'
+
   remove_alpha_ios: true
   android: true
   ios: true
@@ -52,5 +54,6 @@ flutter:
     - public/assets/fonts/
     - public/assets/images/
     - public/assets/images/navbar/
+    - public/assets/images/logos/
     - lang/
     - .env
